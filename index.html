@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToolboxHelp.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+<script>
+  // Завантажуємо версію з файлу VERSION до того як завантажиться основний модуль
+  fetch('/VERSION')
+    .then(r => r.text())
+    .then(v => {
+      const el = document.getElementById('app-version');
+      if (el) el.textContent = 'v' + v.trim();
+    })
+    .catch(() => {});
+</script>
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="logo">
+    <div class="logo-eyebrow"><span class="logo-dot"></span>ONLINE</div>
+    <div class="logo-name">ToolboxHelp</div>
+    <div class="logo-ver" id="app-version">v—</div>
+  </div>
+  <nav class="nav" id="nav"></nav>
+  <div class="sidebar-footer">
+    <div class="sf-r"><span>active tools</span><span id="sf-count">0</span></div>
+  </div>
+</aside>
+<div class="mob-overlay" id="mob-overlay"></div>
+
+<main class="main">
+  <div class="topbar">
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="tb-path"><span class="tb-acc">$</span> ~/toolbox/<b id="tb-path">home</b></div>
+    <div class="tb-right"><div class="tb-dot"></div><span id="tb-clock">--:--:--</span></div>
+  </div>
+  <div class="content" id="content"></div>
+</main>
+
+<div class="notif" id="notif"><div class="ndot"></div><span id="notif-msg"></span></div>
+
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>
