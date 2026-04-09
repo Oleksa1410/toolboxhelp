@@ -1,1 +1,6 @@
-﻿js/admin.config.js
+﻿/js/admin.config.js
+toolbox.zip
+*.bmp
+git.txt
+deploy.sh
+autogit.bat
