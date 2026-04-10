@@ -4,7 +4,7 @@
  * Всі зміни робляться тільки у  js/tools.config.js
  */
 
-import { TOOLS } from './js/tools.config.js';
+import { TOOLS } from './tools.config.js';
 
 // ── Динамічний імпорт усіх інструментів із конфігу ───────────────────────────
 
@@ -217,4 +217,4 @@ window.addEventListener('popstate', e => {
   navigate(id, true);
 });
 
-addLog('system: started v2.5.2');
+addLog('system: started v2.5.0');
