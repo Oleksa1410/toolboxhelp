@@ -4,7 +4,7 @@
  * Всі зміни робляться тільки у  js/tools.config.js
  */
 
-import { TOOLS } from 'js/tools.config.js';
+import { TOOLS } from './js/tools.config.js';
 
 // ── Динамічний імпорт усіх інструментів із конфігу ───────────────────────────
 
@@ -12,7 +12,7 @@ const renderFns = {};
 
 await Promise.all(
   TOOLS.map(async t => {
-    const mod = await import(`tools/${t.file}.js`);
+    const mod = await import(`./tools/${t.file}.js`);
     renderFns[t.id] = mod[t.export];
   })
 );
