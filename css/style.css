@@ -376,3 +376,47 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
 .md-table th{background:var(--s2);color:var(--accent);padding:8px 12px;text-align:left;border:1px solid var(--border);font-size:11px;letter-spacing:1px}
 .md-table td{padding:8px 12px;border:1px solid var(--border);color:var(--text)}
 .md-table tr:nth-child(even) td{background:var(--s1)}
+
+/* ── LUCIDE ICONS in nav ───────────────────────────────────────────────────── */
+.nav-icon svg{width:15px;height:15px;stroke:currentColor;vertical-align:middle}
+.nav-label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ── TOOL TIP CARD ─────────────────────────────────────────────────────────── */
+.tool-tip-card{margin-top:4px;margin-bottom:14px;border:1px solid var(--border);
+  border-radius:8px;overflow:hidden;background:var(--s1)}
+.tool-tip-summary{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 16px;cursor:pointer;
+  font-family:var(--mono);font-size:11px;color:var(--muted2);
+  letter-spacing:.3px;list-style:none;user-select:none;
+  transition:color .12s;
+}
+.tool-tip-summary::-webkit-details-marker{display:none}
+.tool-tip-summary::after{content:'›';margin-left:auto;font-size:14px;transition:transform .2s}
+.tool-tip-card[open] .tool-tip-summary{color:var(--accent)}
+.tool-tip-card[open] .tool-tip-summary::after{transform:rotate(90deg)}
+.tool-tip-body{
+  padding:14px 18px;border-top:1px solid var(--border);
+  font-size:13px;color:var(--text);line-height:1.8;
+}
+.tool-tip-body b{color:var(--text2)}
+.tool-tip-body code{
+  font-family:var(--mono);font-size:11px;
+  background:var(--s3);border:1px solid var(--border);
+  border-radius:3px;padding:1px 5px;color:var(--accent);
+}
+
+/* ── COLOR PALETTES ────────────────────────────────────────────────────────── */
+.pal-row{margin-bottom:16px}
+.pal-title{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:8px}
+.pal-swatches{display:flex;gap:6px;flex-wrap:wrap}
+.pal-swatch{
+  flex:1;min-width:70px;height:64px;border-radius:8px;
+  cursor:pointer;display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-end;
+  padding:5px 6px;transition:transform .12s;border:1px solid rgba(255,255,255,.07);
+}
+.pal-swatch:hover{transform:translateY(-3px);z-index:1}
+.pal-label{font-family:var(--mono);font-size:9px;opacity:.7;white-space:nowrap}
+.pal-hex{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.5px}

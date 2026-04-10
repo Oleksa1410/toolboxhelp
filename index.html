@@ -3,19 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ToolboxHelp.com</title>
+<title>ToolboxHelp.com — Інструменти для веброзробників</title>
+<meta name="description" content="ToolboxHelp — безкоштовний набір офлайн-утиліт для веброзробників. CSS конвертер, генератор паролів, QR-коди, JSON validator, Base64, Diff checker та ще 10+ інструментів. Без реєстрації.">
+<meta name="keywords" content="css units converter, color converter, password generator, qr code generator, json validator, base64 encoder, hash generator, diff checker, url encoder, markdown editor, developer tools, веброзробник, інструменти">
+<meta name="author" content="ToolboxHelp.com">
+<meta property="og:title" content="ToolboxHelp.com — Інструменти для веброзробників">
+<meta property="og:description" content="Набір блискавичних офлайн-утиліт для веброзробників. Без завантажень, без реєстрацій.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolboxhelp.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script>
-  // Завантажуємо версію з файлу VERSION до того як завантажиться основний модуль
-  fetch('/VERSION')
+  fetch('VERSION')
     .then(r => r.text())
-    .then(v => {
-      const el = document.getElementById('app-version');
-      if (el) el.textContent = 'v' + v.trim();
-    })
+    .then(v => { const el = document.getElementById('app-version'); if (el) el.textContent = 'v' + v.trim(); })
     .catch(() => {});
 </script>
 </head>

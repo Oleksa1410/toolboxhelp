@@ -1,6 +1,5 @@
 ﻿/**
  * main.js — ядро застосунку
- *
  * Цей файл НЕ треба редагувати при додаванні нових інструментів.
  * Всі зміни робляться тільки у  js/tools.config.js
  */
@@ -25,7 +24,6 @@ const DEFAULT_TOOLS = TOOLS.map(t => ({
   render: (el) => {
     const fn = renderFns[t.id];
     if (!fn) return;
-    // sys tools (admin) get full context; others get shared ctx
     t.sys ? fn(el, adminCtx()) : fn(el, ctx);
   },
 }));
@@ -89,10 +87,8 @@ function copyText(text, lbl) {
 
 // ── Context ───────────────────────────────────────────────────────────────────
 
-/** Спільний контекст — передається кожному інструменту */
 const ctx = { getVisible, navigate, notify, copyText };
 
-/** Розширений контекст для адмін-панелі */
 function adminCtx() {
   return { tools, DEFAULT_TOOLS, getVisible, navigate, saveState, buildNav, addLog, notify, dragSrcRef };
 }
@@ -115,10 +111,19 @@ function navigate(id, silent) {
   content.appendChild(panel);
   tool.render(panel);
 
-  // Оновлюємо URL без перезавантаження
+  // Tip card під інструментом
+  if (tool.tip) {
+    const tipEl = document.createElement('details');
+    tipEl.className = 'tool-tip-card';
+    tipEl.innerHTML =
+      `<summary class="tool-tip-summary">💡 ${tool.tip.title}</summary>` +
+      `<div class="tool-tip-body">${tool.tip.text}</div>`;
+    panel.appendChild(tipEl);
+  }
+
+  // URL routing — завжди #id, ніколи порожній hash або /?i=1
   if (!silent) {
-    const hash = id === 'home' ? '' : '#' + id;
-    history.pushState({ id }, '', hash || window.location.pathname);
+    history.pushState({ id }, '', '#' + id);
     addLog('open: ' + id);
   }
 }
@@ -148,8 +153,14 @@ function buildNav() {
       disabled         ? 'nav-disabled' : '',
     ].filter(Boolean).join(' ');
     el.dataset.id = t.id;
+
+    // Lucide icon або emoji fallback
+    const iconHtml = t.lucide
+      ? `<span class="nav-icon"><i data-lucide="${t.lucide}"></i></span>`
+      : `<span class="nav-icon">${t.icon}</span>`;
+
     el.innerHTML =
-      `<span class="nav-icon">${t.icon}</span>${t.name}` +
+      iconHtml + `<span class="nav-label">${t.name}</span>` +
       (disabled      ? '<span class="nav-off">off</span>'   : '') +
       (!disabled && !t.sys ? '<span class="nav-badge">run</span>' : '');
     if (!disabled) el.addEventListener('click', () => navigate(t.id));
@@ -161,6 +172,9 @@ function buildNav() {
   if (off.length) { grp('Вимкнені');    off.forEach(t => item(t, true)); }
 
   document.getElementById('sf-count').textContent = vis.length - 1;
+
+  // Ініціалізуємо Lucide іконки після побудови DOM
+  if (window.lucide) window.lucide.createIcons();
 }
 
 // ── Burger menu (mobile) ──────────────────────────────────────────────────────
@@ -175,7 +189,6 @@ function closeMenu() { sidebar.classList.remove('open'); overlay.classList.remov
 burger?.addEventListener('click', () => sidebar.classList.contains('open') ? closeMenu() : openMenu());
 overlay?.addEventListener('click', closeMenu);
 
-// Close menu on nav item click (mobile)
 document.getElementById('nav')?.addEventListener('click', e => {
   if (e.target.closest('.nav-item')) closeMenu();
 });
@@ -193,7 +206,7 @@ setInterval(() => {
 
 buildNav();
 
-// Відновлення сторінки з URL хешу при завантаженні / F5
+// Відновлення з URL хешу при завантаженні / F5
 const initialId = window.location.hash.slice(1) || 'home';
 const validId   = tools.find(t => t.id === initialId && t.enabled) ? initialId : 'home';
 navigate(validId, true);
