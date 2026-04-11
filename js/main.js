@@ -128,9 +128,10 @@ function navigate(id, silent) {
     panel.appendChild(tipEl);
   }
 
-  // URL routing — завжди #id, ніколи порожній hash або /?i=1
+  // URL routing — /aspect замість #aspect; головна — чистий /
   if (!silent) {
-    history.pushState({ id }, '', '#' + id);
+    const url = id === 'home' ? '/' : '/' + id;
+    history.pushState({ id }, '', url);
     addLog('open: ' + id);
   }
 }
@@ -246,14 +247,17 @@ setInterval(() => {
 
 buildNav();
 
-// Відновлення з URL хешу при завантаженні / F5
-const initialId = window.location.hash.slice(1) || 'home';
+// Відновлення з URL при завантаженні / F5
+// /aspect → 'aspect', / → 'home', /home → 'home'
+const pathId    = window.location.pathname.replace(/^\//, '') || 'home';
+const initialId = pathId === '' ? 'home' : pathId;
 const validId   = tools.find(t => t.id === initialId && t.enabled) ? initialId : 'home';
 navigate(validId, true);
 
 // Навігація кнопками браузера (назад/вперед)
 window.addEventListener('popstate', e => {
-  const id = e.state?.id || window.location.hash.slice(1) || 'home';
+  const id = e.state?.id
+    || (window.location.pathname.replace(/^\//, '') || 'home');
   navigate(id, true);
 });
 

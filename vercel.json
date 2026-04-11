@@ -5,27 +5,19 @@
   "headers": [
     {
       "source": "/css/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {
       "source": "/js/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {
       "source": "/img/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {
       "source": "/VERSION",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }]
     },
     {
       "source": "/(.*)",
@@ -39,21 +31,23 @@
   ],
 
   "rewrites": [
+    { "source": "/about",    "destination": "/pages/about.html" },
+    { "source": "/contacts", "destination": "/pages/contacts.html" },
+    { "source": "/privacy",  "destination": "/pages/privacy.html" },
+    { "source": "/404",      "destination": "/pages/404.html" },
+
     {
-      "source": "/404",
-      "destination": "/404.html"
-    }
+      "source": "/(aspect|units|color|password|textcount|qrbar|hash|json|base64|diff|urlencode|dummydata|markdown|admin)",
+      "destination": "/index.html"
+    },
+
+    { "source": "/", "destination": "/index.html" }
   ],
 
-  "redirects": [],
-
-  "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/((?!api/).*)",
-      "dest": "/index.html"
-    }
+  "redirects": [
+    { "source": "/about.html",    "destination": "/about",    "permanent": true },
+    { "source": "/contacts.html", "destination": "/contacts", "permanent": true },
+    { "source": "/privacy.html",  "destination": "/privacy",  "permanent": true },
+    { "source": "/404.html",      "destination": "/404",      "permanent": true }
   ]
 }

@@ -4,18 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Про нас | ToolboxHelp.com</title>
-<meta name="description" content="Дізнайтеся більше про ToolboxHelp.com — безкоштовний набір офлайн-інструментів для веброзробників.">
+<meta name="description" content="Дізнайтеся більше про ToolboxHelp.com — офлайн-інструменти для веброзробників.">
+<meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
 <style>
 .sp-wrap{max-width:760px;margin:0 auto;padding:40px 24px 60px}
-.sp-back{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;
-  color:var(--muted2);text-decoration:none;margin-bottom:32px;transition:color .12s}
+.sp-back{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:var(--muted2);text-decoration:none;margin-bottom:32px;transition:color .12s}
 .sp-back:hover{color:var(--accent)}
-.sp-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
-  color:var(--accent);margin-bottom:10px}
+.sp-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
 .sp-title{font-size:28px;font-weight:600;color:var(--text2);letter-spacing:-0.8px;margin-bottom:20px;line-height:1.2}
 .sp-body{font-size:14px;color:var(--text);line-height:1.9}
 .sp-body h2{font-size:16px;font-weight:600;color:var(--text2);margin:28px 0 10px;letter-spacing:-0.2px}
@@ -25,75 +24,54 @@
 .sp-body ul{padding-left:20px;margin-bottom:14px}
 .sp-body li{margin-bottom:6px}
 .sp-body strong{color:var(--text2)}
-.sp-body code{font-family:var(--mono);font-size:12px;background:var(--s2);
-  border:1px solid var(--border);border-radius:3px;padding:1px 5px;color:var(--accent)}
+.sp-body code{font-family:var(--mono);font-size:12px;background:var(--s2);border:1px solid var(--border);border-radius:3px;padding:1px 5px;color:var(--accent)}
 .sp-divider{border:none;border-top:1px solid var(--border);margin:28px 0}
-.sp-footer{display:flex;gap:18px;flex-wrap:wrap;margin-top:48px;padding-top:20px;
-  border-top:1px solid var(--border);font-family:var(--mono);font-size:11px}
+.sp-footer{display:flex;gap:18px;flex-wrap:wrap;margin-top:48px;padding-top:20px;border-top:1px solid var(--border);font-family:var(--mono);font-size:11px}
 .sp-footer a{color:var(--muted2);text-decoration:none;transition:color .12s}
 .sp-footer a:hover{color:var(--accent)}
-.sp-footer span{color:var(--muted);margin-right:auto}
+.sp-footer-copy{color:var(--muted);margin-right:auto}
 </style>
 </head>
 <body style="background:var(--bg);min-height:100vh;display:block;overflow-y:auto">
 <div class="sp-wrap">
-  <a href="/" class="sp-back">← ToolboxHelp.com</a>
+  <a href="/" class="sp-back">&#8592; ToolboxHelp.com</a>
   <div class="sp-eyebrow">Про проєкт</div>
   <h1 class="sp-title">ToolboxHelp.com</h1>
   <div class="sp-body">
-    <p>
-      <strong>ToolboxHelp</strong> — безкоштовний набір офлайн-утиліт для веброзробників.
-      Тут зібрані інструменти, які потрібні щодня: конвертери, генератори, валідатори.
-    </p>
-    <p>
-      Усі інструменти працюють <strong>прямо у браузері</strong> — без сервера, без завантажень,
-      без реєстрації. Ваші дані нікуди не відправляються.
-    </p>
-
+    <p><strong>ToolboxHelp</strong> — безкоштовний набір офлайн-утиліт для веброзробників.
+    Тут зібрані інструменти, які потрібні щодня: конвертери, генератори, валідатори.</p>
+    <p>Усі інструменти працюють <strong>прямо у браузері</strong> — без сервера, без завантажень,
+    без реєстрації. Ваші дані нікуди не відправляються.</p>
     <h2>Наші принципи</h2>
     <ul>
       <li><strong>Офлайн-першість</strong> — кожен інструмент працює без підключення до мережі.</li>
       <li><strong>Конфіденційність</strong> — ми не збираємо, не зберігаємо і не передаємо ваші дані.</li>
       <li><strong>Швидкість</strong> — жодних зайвих залежностей, нульовий час завантаження логіки.</li>
-      <li><strong>Відкритість</strong> — проста архітектура, легко розширювати.</li>
     </ul>
-
     <h2>Технічний стек</h2>
-    <p>
-      Vanilla JavaScript (ES-модулі) · CSS Custom Properties · без фреймворків.
-      Шрифт: <a href="https://vercel.com/font" target="_blank" rel="noopener">Geist</a> від Vercel.
-      Іконки: <a href="https://lucide.dev" target="_blank" rel="noopener">Lucide Icons</a>.
-      Хостинг: <a href="https://vercel.com" target="_blank" rel="noopener">Vercel</a>.
-    </p>
-
+    <p>Vanilla JavaScript (ES-модулі) · CSS Custom Properties · без фреймворків.
+    Шрифт: <a href="https://vercel.com/font" target="_blank" rel="noopener">Geist</a> від Vercel.
+    Іконки: <a href="https://lucide.dev" target="_blank" rel="noopener">Lucide Icons</a>.
+    Хостинг: <a href="https://vercel.com" target="_blank" rel="noopener">Vercel</a>.</p>
     <h2>Доступні інструменти</h2>
     <ul>
-      <li>Aspect Ratio Calculator</li>
-      <li>CSS Units Converter</li>
-      <li>Color Converter (HEX · RGB · HSL)</li>
-      <li>Password Generator</li>
-      <li>Text Counter</li>
-      <li>QR / Barcode Generator</li>
-      <li>Hash Generator (MD5 · SHA-256 · SHA-512)</li>
-      <li>JSON Validator &amp; Formatter</li>
-      <li>Base64 Encoder / Decoder</li>
-      <li>Diff Checker</li>
-      <li>URL Encoder / Decoder</li>
-      <li>Dummy Data Generator</li>
-      <li>Markdown Editor</li>
+      <li>CSS Units Converter · Color Converter · Aspect Ratio</li>
+      <li>Text Counter · Diff Checker · Markdown Editor · Dummy Data</li>
+      <li>Base64 Encoder · URL Encoder · Hash Generator</li>
+      <li>Password Generator · QR/Barcode Generator</li>
+      <li>JSON Validator</li>
     </ul>
-
     <hr class="sp-divider">
     <p style="color:var(--muted2);font-size:13px">
       Маєте пропозицію чи знайшли баг?
-      <a href="contacts.html">Напишіть нам</a> — ми будемо раді.
+      <a href="/contacts">Напишіть нам</a> — ми будемо раді.
     </p>
   </div>
   <div class="sp-footer">
-    <span>© <script>document.write(new Date().getFullYear())</script> ToolboxHelp.com</span>
-    <a href="about.html">Про нас</a>
-    <a href="contacts.html">Контакти</a>
-    <a href="privacy.html">Конфіденційність</a>
+    <span class="sp-footer-copy">&#169; <script>(function(){var F=2026,n=new Date().getFullYear();document.write(n===F?F:F+"-"+n);})() </script>ToolboxHelp.com</span>
+    <a href="/about">Про нас</a>
+    <a href="/contacts">Контакти</a>
+    <a href="/privacy">Конфіденційність</a>
   </div>
 </div>
 </body>

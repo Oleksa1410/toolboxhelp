@@ -10,6 +10,25 @@
 
 ---
 
+## [2.5.5] — 2025-05-10
+
+### Змінено
+- **Структура** — `about.html`, `contacts.html`, `privacy.html`, `404.html` переміщено в `pages/`
+- **URL routing** — інструменти тепер використовують pathname замість hash:
+  - `toolboxhelp.com/aspect` замість `toolboxhelp.com/#aspect`
+  - Головна — чистий `/`, без `#home`
+  - F5 / пряме посилання відновлює потрібний інструмент
+- **`vercel.json`** — clean URL rewrites:
+  - `/about` → `pages/about.html`
+  - `/contacts` → `pages/contacts.html`
+  - `/privacy` → `pages/privacy.html`
+  - `/aspect`, `/units`, ... → `index.html` (SPA routing)
+  - 301-редиректи зі старих `.html` посилань на clean URLs
+- **`privacy.html`** — посилання на email замінено на `/contacts`
+- Всі посилання між сторінками оновлено на clean URLs (`/about`, `/contacts`, `/privacy`)
+
+---
+
 ## [2.5.4] — 2025-05-10
 
 ### Виправлено

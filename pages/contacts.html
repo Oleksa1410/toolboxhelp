@@ -3,98 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ToolboxHelp.com — Інструменти для веброзробників</title>
-<meta name="description" content="ToolboxHelp — безкоштовний набір офлайн-утиліт для веброзробників. CSS конвертер, генератор паролів, QR-коди, JSON validator, Base64, Diff checker та ще 10+ інструментів. Без реєстрації.">
-<meta name="keywords" content="css units converter, color converter, password generator, qr code generator, json validator, base64 encoder, hash generator, diff checker, url encoder, markdown editor, developer tools, веброзробник, інструменти">
-<meta name="author" content="ToolboxHelp.com">
-<meta property="og:title" content="ToolboxHelp.com — Інструменти для веброзробників">
-<meta property="og:description" content="Набір блискавичних офлайн-утиліт для веброзробників. Без завантажень, без реєстрацій.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://toolboxhelp.com">
+<title>Контакти | ToolboxHelp.com</title>
+<meta name="description" content="Зв'яжіться з командою ToolboxHelp.com — відгуки, пропозиції, баги.">
+<meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="img/favicon.ico" type="image/x-icon">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-<script>
-  fetch('VERSION')
-    .then(r => r.text())
-    .then(v => { const el = document.getElementById('app-version'); if (el) el.textContent = 'v' + v.trim(); })
-    .catch(() => {});
-</script>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+<style>
+.sp-wrap{max-width:760px;margin:0 auto;padding:40px 24px 60px}
+.sp-back{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:var(--muted2);text-decoration:none;margin-bottom:32px;transition:color .12s}
+.sp-back:hover{color:var(--accent)}
+.sp-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.sp-title{font-size:28px;font-weight:600;color:var(--text2);letter-spacing:-0.8px;margin-bottom:20px;line-height:1.2}
+.sp-body{font-size:14px;color:var(--text);line-height:1.9}
+.sp-body h2{font-size:16px;font-weight:600;color:var(--text2);margin:28px 0 10px;letter-spacing:-0.2px}
+.sp-body p{margin-bottom:14px}
+.sp-body a{color:var(--accent);text-decoration:none}
+.sp-body a:hover{text-decoration:underline}
+.sp-body ul{padding-left:20px;margin-bottom:14px}
+.sp-body li{margin-bottom:6px}
+.sp-body strong{color:var(--text2)}
+.sp-body code{font-family:var(--mono);font-size:12px;background:var(--s2);border:1px solid var(--border);border-radius:3px;padding:1px 5px;color:var(--accent)}
+.sp-divider{border:none;border-top:1px solid var(--border);margin:28px 0}
+.sp-footer{display:flex;gap:18px;flex-wrap:wrap;margin-top:48px;padding-top:20px;border-top:1px solid var(--border);font-family:var(--mono);font-size:11px}
+.sp-footer a{color:var(--muted2);text-decoration:none;transition:color .12s}
+.sp-footer a:hover{color:var(--accent)}
+.sp-footer-copy{color:var(--muted);margin-right:auto}
+</style>
 </head>
-<body>
-
-<aside class="sidebar" id="sidebar">
-  <div class="logo">
-    <div class="logo-eyebrow"><span class="logo-dot"></span>ONLINE</div>
-    <div class="logo-name">ToolboxHelp</div>
-    <div class="logo-ver" id="app-version">v—</div>
+<body style="background:var(--bg);min-height:100vh;display:block;overflow-y:auto">
+<div class="sp-wrap">
+  <a href="/" class="sp-back">&#8592; ToolboxHelp.com</a>
+  <div class="sp-eyebrow">Зворотній зв'язок</div>
+  <h1 class="sp-title">Контакти</h1>
+  <div class="sp-body">
+    <p>Ми будемо раді почути ваші відгуки, пропозиції щодо нових інструментів
+    або повідомлення про знайдені баги.</p>
+    <h2>Email</h2>
+    <p><a href="mailto:hello@toolboxhelp.com">hello@toolboxhelp.com</a></p>
+    <h2>Повідомити про баг</h2>
+    <p>Якщо щось не працює — опишіть проблему: який інструмент, що робили,
+    який браузер та ОС. Це допоможе швидко виправити.</p>
+    <h2>Запропонувати інструмент</h2>
+    <p>Якщо вам не вистачає якогось інструменту — напишіть.
+    Ми регулярно додаємо нові утиліти на основі запитів від користувачів.</p>
+    <hr class="sp-divider">
+    <p style="color:var(--muted2);font-size:13px">
+      Відповідаємо зазвичай протягом 1–2 робочих днів.
+    </p>
   </div>
-  <nav class="nav" id="nav"></nav>
-  <div class="sidebar-footer">
-    <div class="sf-r"><span>active tools</span><span id="sf-count">0</span></div>
+  <div class="sp-footer">
+    <span class="sp-footer-copy">&#169; <script>(function(){var F=2026,n=new Date().getFullYear();document.write(n===F?F:F+"-"+n);})() </script>ToolboxHelp.com</span>
+    <a href="/about">Про нас</a>
+    <a href="/contacts">Контакти</a>
+    <a href="/privacy">Конфіденційність</a>
   </div>
-</aside>
-<div class="mob-overlay" id="mob-overlay"></div>
-
-<main class="main">
-  <div class="topbar">
-    <button class="burger" id="burger" aria-label="Меню">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="tb-path"><span class="tb-acc">$</span> ~/toolbox/<b id="tb-path">home</b></div>
-    <div class="tb-right"><div class="tb-dot"></div><span id="tb-clock">--:--:--</span></div>
-  </div>
-  <div class="content" id="content"></div>
-
-  <!-- ── Site Footer ── -->
-  <footer class="site-footer">
-    <div class="site-footer-inner">
-      <span class="site-footer-copy">© <span id="footer-year"></span> ToolboxHelp.com</span>
-      <nav class="site-footer-nav">
-        <a href="about.html"    class="site-footer-link">Про нас</a>
-        <a href="contacts.html" class="site-footer-link">Контакти</a>
-        <a href="privacy.html"  class="site-footer-link">Конфіденційність</a>
-      </nav>
-    </div>
-  </footer>
-
-  <!-- ── Google AdSense Banner ── -->
-  <!-- Замінити data-ad-client та data-ad-slot на свої значення з Google AdSense -->
-  <div class="ad-bar" id="ad-bar">
-    <div class="ad-bar-inner">
-      <span class="ad-label">Реклама</span>
-      <!-- Вставити сюди свій AdSense код: -->
-      <!--
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-           data-ad-slot="XXXXXXXXXX"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      -->
-      <!-- Placeholder поки немає AdSense (видалити після підключення) -->
-      <div class="ad-placeholder">
-        <span>728×90 · Leaderboard</span>
-      </div>
-    </div>
-  </div>
-</main>
-
-<div class="notif" id="notif"><div class="ndot"></div><span id="notif-msg"></span></div>
-
-<script>
-  (function(){
-    const FOUNDED = 2026;
-    const now = new Date().getFullYear();
-    document.getElementById('footer-year').textContent =
-      now === FOUNDED ? FOUNDED : FOUNDED + '–' + now;
-  })();
-</script>
-<script type="module" src="js/main.js"></script>
-<script defer src="/_vercel/insights/script.js"></script>
-
+</div>
 </body>
 </html>
