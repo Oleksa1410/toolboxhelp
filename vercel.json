@@ -45,9 +45,9 @@
   ],
 
   "redirects": [
-    { "source": "/about.html",    "destination": "/about",    "permanent": true },
-    { "source": "/contacts.html", "destination": "/contacts", "permanent": true },
-    { "source": "/privacy.html",  "destination": "/privacy",  "permanent": true },
-    { "source": "/404.html",      "destination": "/404",      "permanent": true }
+    { "source": "/pages/about.html",    "destination": "/about",    "permanent": true },
+    { "source": "/pages/contacts.html", "destination": "/contacts", "permanent": true },
+    { "source": "/pages/privacy.html",  "destination": "/privacy",  "permanent": true },
+    { "source": "/pages/404.html",      "destination": "/404",      "permanent": true }
   ]
 }
