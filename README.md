@@ -3,27 +3,44 @@
 Набір блискавичних офлайн-утиліт для веброзробників.
 Без завантажень, без реєстрацій — тільки код.
 
-**Версія:** 2.5.0 · **Сайт:** [toolboxhelp.com](https://toolboxhelp.com)
+**Версія:** 2.5.4 · **Сайт:** [toolboxhelp.com](https://toolboxhelp.com)
 
 ---
 
 ## Інструменти (13)
 
-| # | ID | Назва | Опис |
-|---|-----|-------|------|
-| 1 | `aspect` | Aspect Ratio | Калькулятор співвідношення сторін |
-| 2 | `units` | CSS Units Converter | Конвертер px · rem · em · vw · vh |
-| 3 | `color` | Color Converter | HEX ↔ RGB ↔ HSL · генерація палітр |
-| 4 | `password` | Password Gen | Генератор безпечних паролів |
-| 5 | `textcount` | Text Counter | Лічильник символів, слів, рядків |
-| 6 | `qrbar` | QR/Barcode Generator | QR та штрих-коди, PNG/SVG завантаження |
-| 7 | `hash` | Hash Generator | MD5 · SHA-1/256/384/512 |
-| 8 | `json` | JSON Validator | Форматування, валідація, мінімайзер |
-| 9 | `base64` | Base64 Encoder | Encode/Decode тексту і файлів |
-| 10 | `diff` | Diff Checker | Порівняння тексту (LCS-алгоритм) |
-| 11 | `urlencode` | URL Encoder | Encode/Decode · розбір URL на частини |
-| 12 | `dummydata` | Dummy Data | Генератор тестових користувачів |
-| 13 | `markdown` | Markdown Editor | Редактор з live preview |
+### CSS & Дизайн
+| ID | Назва | Опис |
+|----|-------|------|
+| `units` | CSS Units Converter | Конвертер px · rem · em · vw · vh |
+| `color` | Color Converter | HEX ↔ RGB ↔ HSL |
+| `aspect` | Aspect Ratio | Калькулятор співвідношення сторін |
+
+### Текст & Дані
+| ID | Назва | Опис |
+|----|-------|------|
+| `textcount` | Text Counter | Символи · слова · рядки · речення |
+| `diff` | Diff Checker | Порівняння двох текстів (LCS) |
+| `markdown` | Markdown Editor | Редактор з live preview |
+| `dummydata` | Dummy Data | Генератор тестових користувачів |
+
+### Кодування
+| ID | Назва | Опис |
+|----|-------|------|
+| `base64` | Base64 Encoder | Encode/Decode тексту і файлів |
+| `urlencode` | URL Encoder | Encode/Decode · розбір URL |
+| `hash` | Hash Generator | MD5 · SHA-1/256/384/512 |
+
+### Генератори
+| ID | Назва | Опис |
+|----|-------|------|
+| `password` | Password Gen | Генератор безпечних паролів |
+| `qrbar` | QR / Barcode | QR та штрих-коди, PNG/SVG |
+
+### Валідатори
+| ID | Назва | Опис |
+|----|-------|------|
+| `json` | JSON Validator | Форматування, валідація, мінімайзер |
 
 ---
 
@@ -33,158 +50,143 @@
 toolbox/
 ├── index.html              ← shell-сторінка
 ├── 404.html                ← сторінка помилки
+├── about.html              ← Про нас
+├── contacts.html           ← Контакти
+├── privacy.html            ← Політика конфіденційності
+├── vercel.json             ← конфіг деплою Vercel
 ├── VERSION                 ← поточна версія (тільки тут!)
 ├── CHANGELOG.md            ← історія змін
 ├── README.md               ← цей файл
 ├── css/
-│   └── style.css           ← всі стилі + responsive + теми
+│   └── style.css
 ├── img/
 │   └── favicon.ico
-├── js/
-│   ├── main.js             ← роутер, навігація, стан
-│   ├── tools.config.js     ← ЄДИНИЙ файл для реєстрації інструментів
-│   ├── admin.config.js     ← хеш пароля адмінки (не комітити!)
-│   ├── ui/
-│   │   └── components.js   ← спільні UI-компоненти
-│   └── tools/
-│       ├── home.js, aspect.js, units.js, color.js
-│       ├── password.js, textcount.js, qrbar.js
-│       ├── hash.js, json.js, base64.js, diff.js
-│       ├── urlencode.js, dummydata.js, markdown.js
-│       ├── admin.js
-│       └── _template.js    ← шаблон нового інструменту
-└── server/                 ← FastAPI + MySQL бекенд (майбутнє)
+└── js/
+    ├── main.js             ← роутер, навігація, стан, buildNav
+    ├── tools.config.js     ← реєстр + групи + tips
+    ├── admin.config.js     ← хеш пароля (не комітити!)
+    ├── ui/
+    │   └── components.js
+    └── tools/
+        ├── home.js, aspect.js, units.js, color.js
+        ├── password.js, textcount.js, qrbar.js
+        ├── hash.js, json.js, base64.js, diff.js
+        ├── urlencode.js, dummydata.js, markdown.js
+        ├── admin.js
+        └── _template.js
 ```
 
 ---
 
-## Запуск
-
-ES-модулі потребують HTTP-сервера (не `file://`).
+## Запуск локально
 
 ```bash
-# Python
+# Python (вбудований сервер)
 cd toolbox
 python3 -m http.server 3000
+# відкрити http://localhost:3000
 
 # Node.js
 npx serve .
 ```
 
-Відкрити: http://localhost:3000
-
 ---
 
 ## Як додати новий інструмент
 
-### Крок 1 — створи файл
-
+**Крок 1** — створи `js/tools/mytool.js`:
 ```js
-// js/tools/mytool.js
 export function renderMyTool(el, ctx) {
-  const { notify, copyText, navigate } = ctx;
+  const { notify, copyText } = ctx;
   el.innerHTML = `<div class="card">...</div>`;
-  // логіка
 }
 ```
 
-### Крок 2 — зареєструй в `tools.config.js`
-
+**Крок 2** — додай до `tools.config.js`:
 ```js
 {
   id:      'mytool',
-  lucide:  'star',            // іконка з lucide.dev/icons
-  icon:    '★',               // emoji fallback
+  lucide:  'star',          // іконка lucide.dev/icons
+  icon:    '★',             // emoji fallback
   name:    'My Tool',
   desc:    'Короткий опис',
   file:    'mytool',
   export:  'renderMyTool',
   order:   14,
+  group:   'generate',      // css | text | encode | generate | validate
   enabled: true,
-  tip: {
-    title: 'Заголовок довідки під інструментом',
-    text:  'Текст довідки з <b>HTML</b> підтримкою.',
-  },
+  tip: { title: 'Заголовок', text: 'HTML-текст довідки' },
 },
 ```
 
-**Більше нічого не треба** — меню, головна і адмінка підхоплять автоматично.
+Більше нічого не треба — меню, головна, адмінка підхоплять автоматично.
 
 ---
 
 ## Версіонування
 
 Версія зберігається **тільки у файлі `VERSION`**.
-`index.html` читає її через `fetch('VERSION')` — більше не треба редагувати вручну.
+`index.html` і `main.js` читають її через `fetch('VERSION')`.
 
-| Зміна | Що оновити |
-|-------|-----------|
-| Баг-фікс, дрібна зміна | `VERSION` (PATCH +0.0.1) → `CHANGELOG.md` |
-| Новий інструмент | `VERSION` (MINOR +0.1.0) → `CHANGELOG.md` → `README.md` |
-| Великий рефакторинг | `VERSION` (MAJOR +1.0.0) → `CHANGELOG.md` → `README.md` |
+| Зміна | Версія | Що оновити |
+|-------|--------|-----------|
+| Баг-фікс, косметика | PATCH +0.0.1 | `VERSION` → `CHANGELOG.md` |
+| Новий інструмент | MINOR +0.1.0 | `VERSION` → `CHANGELOG.md` → `README.md` |
+| Великий рефакторинг | MAJOR +1.0.0 | `VERSION` → `CHANGELOG.md` → `README.md` |
 
-```
-2.5.0
-↑ ↑ ↑
-│ │ └── PATCH — баги, текст, дрібниці
-│ └──── MINOR — новий інструмент або функція
-└────── MAJOR — переписування архітектури
-```
+---
+
+## Групи меню
+
+Групи визначаються полем `group` у `tools.config.js`:
+
+| group | Секція в меню |
+|-------|--------------|
+| `css` | CSS & Дизайн |
+| `text` | Текст & Дані |
+| `encode` | Кодування |
+| `generate` | Генератори |
+| `validate` | Валідатори |
+| `null` | без секції (Головна, Адмін) |
+
+---
+
+## Деплой на Vercel
+
+1. Підключи репозиторій у [vercel.com/new](https://vercel.com/new)
+2. Framework Preset: **Other**
+3. Root Directory: `toolbox/` (або де лежать файли)
+4. Build Command: (порожньо — статичний сайт)
+5. Output Directory: `.`
+
+`vercel.json` вже налаштований: SPA routing, кешування, security headers.
 
 ---
 
 ## Адмінка
 
-Пароль адмінки зберігається як SHA-256 хеш у `js/admin.config.js`.
+Пароль — SHA-256 хеш у `js/admin.config.js`.
 
+Генерація хешу (консоль браузера F12):
 ```js
-// js/admin.config.js
-export const ADMIN_CONFIG = {
-  passwordHash: 'sha256_hash_тут',
-};
-```
-
-**Генерація хешу** (консоль браузера F12):
-```js
-const hash = async p => Array.from(
+const h = async p => Array.from(
   new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(p)))
 ).map(b => b.toString(16).padStart(2,'0')).join('');
-hash('ТвійПароль').then(console.log);
+h('ТвійПароль').then(console.log);
 ```
 
-⚠️ Додай у `.gitignore`:
+`.gitignore` — обов'язково:
 ```
 js/admin.config.js
 ```
-
----
-
-## URL Routing
-
-При переході на інструмент URL змінюється: `https://toolboxhelp.com/#aspect`
-При F5 або прямому переході — відкривається той самий інструмент.
-Кнопки браузера "назад/вперед" працюють коректно.
 
 ---
 
 ## Технічний стек
 
-- **Vanilla JS** з ES-модулями (`import/export`)
-- **Без фреймворків** — нульові залежності у рантаймі
-- **Lucide Icons** — CDN, SVG іконки в nav
-- **Geist + Geist Mono** — шрифти (Google Fonts)
+- **Vanilla JS** — ES-модулі, без фреймворків
+- **Lucide Icons** — SVG іконки (CDN)
+- **Geist / Geist Mono** — шрифти (Google Fonts)
 - **CSS Custom Properties** — темна схема `#0d1117`
-- **crypto.subtle** — SHA-256/384/512 хешування
-- **history.pushState** — URL routing без перезавантаження
-
----
-
-## .gitignore
-
-```
-js/admin.config.js
-server/.env
-server/__pycache__/
-server/.venv/
-*.pyc
-```
+- **Vercel** — хостинг + analytics
+- **history.pushState** — URL routing (`#tool-id`)

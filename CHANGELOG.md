@@ -10,6 +10,26 @@
 
 ---
 
+## [2.5.4] — 2025-05-10
+
+### Виправлено
+- `addLog('system: started vX.X.X')` — версія більше не хардкодиться у `main.js`, читається з `VERSION` через `fetch` (той самий механізм що й sidebar)
+- Рік у footer: `2026` → `2026`, починаючи з 2027 → `2026–2027` і далі автоматично
+- Перегенеровано `contacts.html` та `privacy.html` (Cloudflare-скрипти прибрані)
+
+### Змінено
+- **Меню** — інструменти розбито по групах:
+  - **CSS & Дизайн** — CSS Units, Color Converter, Aspect Ratio
+  - **Текст & Дані** — Text Counter, Diff Checker, Markdown Editor, Dummy Data
+  - **Кодування** — Base64, URL Encoder, Hash Generator
+  - **Генератори** — Password Gen, QR / Barcode
+  - **Валідатори** — JSON Validator
+- `tools.config.js` — додано поле `group` для кожного інструменту
+- `buildNav()` у `main.js` — читає групи з конфігу, рендерить секції автоматично
+- Оновлено `README.md`
+
+---
+
 ## [2.5.3] — 2025-05-09
 
 ### Додано

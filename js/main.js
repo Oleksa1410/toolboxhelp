@@ -137,13 +137,24 @@ function navigate(id, silent) {
 
 // ── Sidebar ───────────────────────────────────────────────────────────────────
 
+// Назви груп — порядок визначає порядок секцій у меню
+const GROUP_LABELS = {
+  css:      'CSS & Дизайн',
+  text:     'Текст & Дані',
+  encode:   'Кодування',
+  generate: 'Генератори',
+  validate: 'Валідатори',
+};
+
 function buildNav() {
   const nav = document.getElementById('nav');
   nav.innerHTML = '';
 
-  const vis = getVisible().filter(t => !t.sys);
+  const vis = getVisible().filter(t => !t.sys && t.id !== 'home');
   const sys = getVisible().filter(t =>  t.sys);
   const off = tools.filter(t => !t.enabled && !t.sys);
+
+  // ── Функції ──────────────────────────────────────────────────────────────────
 
   const grp = label => {
     const g = document.createElement('div');
@@ -161,26 +172,48 @@ function buildNav() {
     ].filter(Boolean).join(' ');
     el.dataset.id = t.id;
 
-    // Lucide icon або emoji fallback
     const iconHtml = t.lucide
       ? `<span class="nav-icon"><i data-lucide="${t.lucide}"></i></span>`
       : `<span class="nav-icon">${t.icon}</span>`;
 
     el.innerHTML =
       iconHtml + `<span class="nav-label">${t.name}</span>` +
-      (disabled      ? '<span class="nav-off">off</span>'   : '') +
+      (disabled           ? '<span class="nav-off">off</span>'   : '') +
       (!disabled && !t.sys ? '<span class="nav-badge">run</span>' : '');
     if (!disabled) el.addEventListener('click', () => navigate(t.id));
     nav.appendChild(el);
   };
 
-  if (vis.length) { grp('Інструменти'); vis.forEach(t => item(t)); }
-  if (sys.length) { grp('Система');     sys.forEach(t => item(t)); }
-  if (off.length) { grp('Вимкнені');    off.forEach(t => item(t, true)); }
+  // ── Головна окремо ───────────────────────────────────────────────────────────
+  const homeT = tools.find(t => t.id === 'home' && t.enabled);
+  if (homeT) item(homeT);
 
-  document.getElementById('sf-count').textContent = vis.length - 1;
+  // ── Групи інструментів ───────────────────────────────────────────────────────
+  Object.entries(GROUP_LABELS).forEach(([groupId, groupLabel]) => {
+    const groupTools = vis
+      .filter(t => t.group === groupId)
+      .sort((a, b) => a.order - b.order);
+    if (!groupTools.length) return;
+    grp(groupLabel);
+    groupTools.forEach(t => item(t));
+  });
 
-  // Ініціалізуємо Lucide іконки після побудови DOM
+  // Інструменти без групи (крім home та sys)
+  const ungrouped = vis.filter(t => !t.group && t.id !== 'home');
+  if (ungrouped.length) {
+    grp('Інше');
+    ungrouped.forEach(t => item(t));
+  }
+
+  // ── Система ──────────────────────────────────────────────────────────────────
+  if (sys.length) { grp('Система'); sys.forEach(t => item(t)); }
+
+  // ── Вимкнені ─────────────────────────────────────────────────────────────────
+  if (off.length) { grp('Вимкнені'); off.forEach(t => item(t, true)); }
+
+  document.getElementById('sf-count').textContent =
+    vis.filter(t => t.id !== 'home').length;
+
   if (window.lucide) window.lucide.createIcons();
 }
 
@@ -224,4 +257,8 @@ window.addEventListener('popstate', e => {
   navigate(id, true);
 });
 
-addLog('system: started v2.5.0');
+// Версія читається з файлу VERSION — той самий fetch що й sidebar
+fetch('VERSION')
+  .then(r => r.text())
+  .then(v => addLog('system: started v' + v.trim()))
+  .catch(() => addLog('system: started'));

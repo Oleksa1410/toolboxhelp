@@ -66,11 +66,18 @@
     <div class="ad-bar-inner">
       <span class="ad-label">Реклама</span>
       <!-- Вставити сюди свій AdSense код: -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1778963811750250"
-     crossorigin="anonymous"></script>
+      <!--
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
       <!-- Placeholder поки немає AdSense (видалити після підключення) -->
       <div class="ad-placeholder">
-        <span><!--728×90 · Leaderboard--><ins class="adsbygoogle"></ins></span>
+        <span>728×90 · Leaderboard</span>
       </div>
     </div>
   </div>
@@ -78,7 +85,14 @@
 
 <div class="notif" id="notif"><div class="ndot"></div><span id="notif-msg"></span></div>
 
-<script>document.getElementById("footer-year").textContent=new Date().getFullYear();</script>
+<script>
+  (function(){
+    const FOUNDED = 2026;
+    const now = new Date().getFullYear();
+    document.getElementById('footer-year').textContent =
+      now === FOUNDED ? FOUNDED : FOUNDED + '–' + now;
+  })();
+</script>
 <script type="module" src="js/main.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 
