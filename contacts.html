@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToolboxHelp.com — Інструменти для веброзробників</title>
+<meta name="description" content="ToolboxHelp — безкоштовний набір офлайн-утиліт для веброзробників. CSS конвертер, генератор паролів, QR-коди, JSON validator, Base64, Diff checker та ще 10+ інструментів. Без реєстрації.">
+<meta name="keywords" content="css units converter, color converter, password generator, qr code generator, json validator, base64 encoder, hash generator, diff checker, url encoder, markdown editor, developer tools, веброзробник, інструменти">
+<meta name="author" content="ToolboxHelp.com">
+<meta property="og:title" content="ToolboxHelp.com — Інструменти для веброзробників">
+<meta property="og:description" content="Набір блискавичних офлайн-утиліт для веброзробників. Без завантажень, без реєстрацій.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolboxhelp.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
+  fetch('VERSION')
+    .then(r => r.text())
+    .then(v => { const el = document.getElementById('app-version'); if (el) el.textContent = 'v' + v.trim(); })
+    .catch(() => {});
+</script>
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="logo">
+    <div class="logo-eyebrow"><span class="logo-dot"></span>ONLINE</div>
+    <div class="logo-name">ToolboxHelp</div>
+    <div class="logo-ver" id="app-version">v—</div>
+  </div>
+  <nav class="nav" id="nav"></nav>
+  <div class="sidebar-footer">
+    <div class="sf-r"><span>active tools</span><span id="sf-count">0</span></div>
+  </div>
+</aside>
+<div class="mob-overlay" id="mob-overlay"></div>
+
+<main class="main">
+  <div class="topbar">
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="tb-path"><span class="tb-acc">$</span> ~/toolbox/<b id="tb-path">home</b></div>
+    <div class="tb-right"><div class="tb-dot"></div><span id="tb-clock">--:--:--</span></div>
+  </div>
+  <div class="content" id="content"></div>
+
+  <!-- ── Site Footer ── -->
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span class="site-footer-copy">© <span id="footer-year"></span> ToolboxHelp.com</span>
+      <nav class="site-footer-nav">
+        <a href="about.html"    class="site-footer-link">Про нас</a>
+        <a href="contacts.html" class="site-footer-link">Контакти</a>
+        <a href="privacy.html"  class="site-footer-link">Конфіденційність</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- ── Google AdSense Banner ── -->
+  <!-- Замінити data-ad-client та data-ad-slot на свої значення з Google AdSense -->
+  <div class="ad-bar" id="ad-bar">
+    <div class="ad-bar-inner">
+      <span class="ad-label">Реклама</span>
+      <!-- Вставити сюди свій AdSense код: -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+      <!-- Placeholder поки немає AdSense (видалити після підключення) -->
+      <div class="ad-placeholder">
+        <span>728×90 · Leaderboard</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="notif" id="notif"><div class="ndot"></div><span id="notif-msg"></span></div>
+
+<script>
+  (function(){
+    const FOUNDED = 2026;
+    const now = new Date().getFullYear();
+    document.getElementById('footer-year').textContent =
+      now === FOUNDED ? FOUNDED : FOUNDED + '–' + now;
+  })();
+</script>
+<script type="module" src="js/main.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>
