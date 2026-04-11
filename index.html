@@ -47,10 +47,45 @@
     <div class="tb-right"><div class="tb-dot"></div><span id="tb-clock">--:--:--</span></div>
   </div>
   <div class="content" id="content"></div>
+
+  <!-- ── Site Footer ── -->
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span class="site-footer-copy">© <span id="footer-year"></span> ToolboxHelp.com</span>
+      <nav class="site-footer-nav">
+        <a href="about.html"    class="site-footer-link">Про нас</a>
+        <a href="contacts.html" class="site-footer-link">Контакти</a>
+        <a href="privacy.html"  class="site-footer-link">Конфіденційність</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- ── Google AdSense Banner ── -->
+  <!-- Замінити data-ad-client та data-ad-slot на свої значення з Google AdSense -->
+  <div class="ad-bar" id="ad-bar">
+    <div class="ad-bar-inner">
+      <span class="ad-label">Реклама</span>
+      <!-- Вставити сюди свій AdSense код: -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+      <!-- Placeholder поки немає AdSense (видалити після підключення) -->
+      <div class="ad-placeholder">
+        <span>728×90 · Leaderboard</span>
+      </div>
+    </div>
+  </div>
 </main>
 
 <div class="notif" id="notif"><div class="ndot"></div><span id="notif-msg"></span></div>
 
+<script>document.getElementById("footer-year").textContent=new Date().getFullYear();</script>
 <script type="module" src="js/main.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 

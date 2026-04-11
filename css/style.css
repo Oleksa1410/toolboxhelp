@@ -420,3 +420,96 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
 .pal-swatch:hover{transform:translateY(-3px);z-index:1}
 .pal-label{font-family:var(--mono);font-size:9px;opacity:.7;white-space:nowrap}
 .pal-hex{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.5px}
+
+/* ── GOOGLE ADSENSE BANNER ─────────────────────────────────────────────────── */
+.ad-bar{
+  flex-shrink:0;
+  border-top:1px solid var(--border);
+  background:var(--s1);
+  padding:8px 16px;
+  position:sticky;
+  bottom:0;
+  z-index:10;
+}
+.ad-bar-inner{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  max-width:100%;
+  min-height:60px;
+}
+.ad-label{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--muted);
+  flex-shrink:0;
+  writing-mode:horizontal-tb;
+}
+/* Placeholder — видалити після підключення AdSense */
+.ad-placeholder{
+  flex:1;
+  max-width:728px;
+  height:50px;
+  border:1px dashed var(--border2);
+  border-radius:4px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--muted);
+}
+/* AdSense ins елемент */
+.ad-bar-inner .adsbygoogle{
+  flex:1;
+  max-width:728px;
+}
+
+/* На мобільних — менша висота, банер 320×50 */
+@media(max-width:768px){
+  .ad-bar{padding:6px 10px;position:static}
+  .ad-bar-inner{min-height:52px}
+  .ad-placeholder::before{content:'320×50 · Mobile Banner'}
+  .ad-placeholder span{display:none}
+}
+
+/* ── SITE FOOTER ───────────────────────────────────────────────────────────── */
+.site-footer{
+  flex-shrink:0;
+  border-top:1px solid var(--border);
+  padding:10px 26px;
+  background:var(--s1);
+}
+.site-footer-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.site-footer-copy{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--muted);
+}
+.site-footer-nav{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.site-footer-link{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--muted2);
+  text-decoration:none;
+  transition:color .12s;
+}
+.site-footer-link:hover{color:var(--accent)}
+@media(max-width:768px){
+  .site-footer{padding:10px 16px}
+  .site-footer-inner{justify-content:center;text-align:center}
+  .site-footer-nav{gap:12px}
+}
