@@ -426,10 +426,11 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
   flex-shrink:0;
   border-top:1px solid var(--border);
   background:var(--s1);
-  padding:8px 16px;
+  padding:6px 16px;
   position:sticky;
   bottom:0;
   z-index:10;
+  overflow:hidden;
 }
 .ad-bar-inner{
   display:flex;
@@ -437,7 +438,7 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
   justify-content:center;
   gap:10px;
   max-width:100%;
-  min-height:60px;
+  min-height:50px;
 }
 .ad-label{
   font-family:var(--mono);
@@ -446,34 +447,18 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
   text-transform:uppercase;
   color:var(--muted);
   flex-shrink:0;
-  writing-mode:horizontal-tb;
 }
-/* Placeholder — видалити після підключення AdSense */
-.ad-placeholder{
-  flex:1;
-  max-width:728px;
-  height:50px;
-  border:1px dashed var(--border2);
-  border-radius:4px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:var(--mono);
-  font-size:10px;
-  color:var(--muted);
+/* Обмежуємо ширину ins щоб не розтягував сторінку */
+.ad-bar-inner ins.adsbygoogle{
+  max-width:min(728px, calc(100vw - var(--sidebar) - 120px));
+  overflow:hidden;
 }
-/* AdSense ins елемент */
-.ad-bar-inner .adsbygoogle{
-  flex:1;
-  max-width:728px;
-}
-
-/* На мобільних — менша висота, банер 320×50 */
 @media(max-width:768px){
-  .ad-bar{padding:6px 10px;position:static}
-  .ad-bar-inner{min-height:52px}
-  .ad-placeholder::before{content:'320×50 · Mobile Banner'}
-  .ad-placeholder span{display:none}
+  .ad-bar{padding:4px 8px;position:static}
+  .ad-bar-inner ins.adsbygoogle{
+    width:100% !important;
+    max-width:100% !important;
+  }
 }
 
 /* ── SITE FOOTER ───────────────────────────────────────────────────────────── */
