@@ -17,13 +17,13 @@
 <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1778963811750250" crossorigin="anonymous"></script>
-<!--<script>
+<script>
   // Спочатку пробуємо /VERSION (Vercel), потім VERSION (локально)
   fetch('/VERSION').then(r => r.ok ? r.text() : Promise.reject())
     .catch(() => fetch('VERSION').then(r => r.text()))
     .then(v => { const el = document.getElementById('app-version'); if (el) el.textContent = 'v' + v.trim(); })
     .catch(() => {});
-</script>-->
+</script>
 </head>
 <body>
 
@@ -89,7 +89,7 @@
   })();
 </script>
 <script type="module" src="js/main.js"></script>
-<!--<script defer src="/_vercel/insights/script.js"></script>-->
+<script defer src="/_vercel/insights/script.js"></script>
 
 </body>
 </html>
