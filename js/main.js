@@ -5,6 +5,7 @@
  */
 
 import { TOOLS } from './tools.config.js';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // ── Динамічний імпорт усіх інструментів із конфігу ───────────────────────────
 
