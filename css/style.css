@@ -426,19 +426,19 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
   flex-shrink:0;
   border-top:1px solid var(--border);
   background:var(--s1);
-  padding:6px 16px;
+  padding:4px 16px;
   position:sticky;
   bottom:0;
   z-index:10;
   overflow:hidden;
+  max-height:110px;
 }
 .ad-bar-inner{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
-  max-width:100%;
-  min-height:50px;
+  gap:8px;
+  width:100%;
 }
 .ad-label{
   font-family:var(--mono);
@@ -447,18 +447,24 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
   text-transform:uppercase;
   color:var(--muted);
   flex-shrink:0;
+  white-space:nowrap;
 }
-/* Обмежуємо ширину ins щоб не розтягував сторінку */
-.ad-bar-inner ins.adsbygoogle{
-  max-width:min(728px, calc(100vw - var(--sidebar) - 120px));
+.ad-slot-wrap{
+  flex:1;
+  max-width:728px;
+  min-width:0;
+  overflow:hidden;
+}
+.ad-slot-wrap ins.adsbygoogle{
+  display:block;
+  width:100%;
+  max-height:90px;
   overflow:hidden;
 }
 @media(max-width:768px){
-  .ad-bar{padding:4px 8px;position:static}
-  .ad-bar-inner ins.adsbygoogle{
-    width:100% !important;
-    max-width:100% !important;
-  }
+  .ad-bar{padding:4px 8px;position:static;max-height:70px}
+  .ad-label{display:none}
+  .ad-slot-wrap{max-width:100%}
 }
 
 /* ── SITE FOOTER ───────────────────────────────────────────────────────────── */
@@ -498,3 +504,19 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
   .site-footer-inner{justify-content:center;text-align:center}
   .site-footer-nav{gap:12px}
 }
+
+/* ── WHOIS ─────────────────────────────────────────────────────────────────── */
+.whois-badge{display:inline-flex;align-items:center;padding:4px 12px;border-radius:20px;font-family:var(--mono);font-size:11px;font-weight:600}
+.whois-badge-reg  {background:rgba(24,224,112,.12);border:1px solid rgba(24,224,112,.3);color:var(--green)}
+.whois-badge-avail{background:rgba(74,158,255,.12);border:1px solid rgba(74,158,255,.3);color:var(--blue)}
+.whois-badge-err  {background:var(--red-dim);border:1px solid rgba(224,85,85,.3);color:#f08080}
+.whois-badge-warn {background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);color:var(--amber)}
+.whois-grid{display:flex;flex-direction:column;gap:0}
+.whois-row{display:flex;align-items:flex-start;gap:16px;padding:9px 0;border-bottom:1px solid var(--border)}
+.whois-row:last-child{border-bottom:none}
+.whois-k{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);width:130px;flex-shrink:0;padding-top:2px}
+.whois-v{font-family:var(--mono);font-size:12px;color:var(--text2);word-break:break-all;flex:1;line-height:1.7}
+
+/* ── ASCII CONVERTER ───────────────────────────────────────────────────────── */
+.asc-radio{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:12px;color:var(--text);cursor:pointer;user-select:none}
+.asc-radio input{accent-color:var(--accent);cursor:pointer}

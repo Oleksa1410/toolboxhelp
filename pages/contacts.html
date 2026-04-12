@@ -56,11 +56,6 @@
   <div class="sp-body">
     <p>Ми будемо раді почути ваші відгуки, пропозиції щодо нових інструментів або повідомлення про знайдені баги.</p>
 
-    <h2>Email</h2>
-    <p><a href="mailto:artur.oleksiuk.89@gmail.com">artur.oleksiuk.89@gmail.com</a></p>
-
-    <hr class="sp-divider">
-
     <h2>Написати нам</h2>
 
     <!--
@@ -103,9 +98,6 @@
       </button>
       <div class="cf-msg" id="cf-result"></div>
     </form>
-
-    <hr class="sp-divider">
-    <p style="color:var(--muted2);font-size:13px">Відповідаємо зазвичай протягом 1–2 робочих днів.</p>
   </div>
 
   <div class="sp-footer">
@@ -139,9 +131,9 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
   // ── Спочатку спробуємо Formspree ──────────────────────────────────────────
   // Замінити YOUR_FORM_ID на реальний ID з formspree.io
-  const FORMSPREE_ID = 'YOUR_FORM_ID';
+  const FORMSPREE_ID = 'mvzdpwwl';
 
-  if (FORMSPREE_ID !== 'YOUR_FORM_ID') {
+  if (FORMSPREE_ID !== 'mvzdpwwl') {
     try {
       const data = new FormData();
       data.append('name', name);

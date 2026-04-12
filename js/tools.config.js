@@ -285,6 +285,45 @@ export const TOOLS = [
 
   // ── Система ──────────────────────────────────────────────────────────────────
   {
+    id:      'whois',
+    lucide:  'search',
+    icon:    '🔍',
+    name:    'WHOIS Lookup',
+    desc:    'Перевірка домену, реєстратор, дати',
+    file:    'whois',
+    export:  'renderWhois',
+    order:   14,
+    group:   'validate',
+    enabled: true,
+    tip: {
+      title: 'Що таке WHOIS / RDAP?',
+      text:  '<b>WHOIS</b> — протокол для отримання інформації про доменне ім\'я: реєстратор, власник, дати реєстрації та спливання, nameservers.<br>' +
+             '<b>RDAP</b> (Registration Data Access Protocol) — сучасна заміна WHOIS, повертає структурований JSON. ' +
+             'Підтримує CORS, тому працює прямо у браузері.<br>' +
+             'Дані надаються реєстратором — деякі поля можуть бути приховані через GDPR.',
+    },
+  },
+  {
+    id:      'ascii',
+    lucide:  'binary',
+    icon:    'A',
+    name:    'ASCII Converter',
+    desc:    'Текст ↔ ASCII/Hex/Binary/Unicode',
+    file:    'ascii',
+    export:  'renderAscii',
+    order:   15,
+    group:   'encode',
+    enabled: true,
+    tip: {
+      title: 'ASCII, Unicode, UTF-8 — різниця',
+      text:  '<b>ASCII</b> — 128 символів (0–127): латиниця, цифри, розділові знаки. 7-бітний стандарт 1963 року.<br>' +
+             '<b>Unicode</b> — понад 140 000 символів з усіх мов світу. Кожен символ має унікальний code point (U+XXXX).<br>' +
+             '<b>UTF-8</b> — найпоширеніше кодування Unicode. Сумісне з ASCII для перших 128 символів. ' +
+             'Кирилиця кодується у 2 байти.',
+    },
+  },
+
+  {
     id:      'admin',
     lucide:  'settings',
     icon:    '⚙',

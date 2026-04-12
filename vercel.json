@@ -1,5 +1,4 @@
 {
-  "cleanUrls": true,
   "trailingSlash": false,
 
   "headers": [
@@ -30,10 +29,16 @@
     }
   ],
 
+  "redirects": [
+    { "source": "/about.html",    "destination": "/about",    "permanent": true },
+    { "source": "/contacts.html", "destination": "/contacts", "permanent": true },
+    { "source": "/privacy.html",  "destination": "/privacy",  "permanent": true }
+  ],
+
   "rewrites": [
-    { "source": "/about",    "destination": "/pages/about.html" },
-    { "source": "/contacts", "destination": "/pages/contacts.html" },
-    { "source": "/privacy",  "destination": "/pages/privacy.html" },
+    { "source": "/about",     "destination": "/pages/about.html" },
+    { "source": "/contacts",  "destination": "/pages/contacts.html" },
+    { "source": "/privacy",   "destination": "/pages/privacy.html" },
 
     { "source": "/aspect",    "destination": "/index.html" },
     { "source": "/units",     "destination": "/index.html" },
@@ -48,17 +53,10 @@
     { "source": "/urlencode", "destination": "/index.html" },
     { "source": "/dummydata", "destination": "/index.html" },
     { "source": "/markdown",  "destination": "/index.html" },
+    { "source": "/whois",     "destination": "/index.html" },
+    { "source": "/ascii",     "destination": "/index.html" },
     { "source": "/admin",     "destination": "/index.html" },
 
-    { "source": "/",          "destination": "/index.html" },
-
     { "source": "/(.*)",      "destination": "/pages/404.html" }
-  ],
-
-  "redirects": [
-    { "source": "/about.html",    "destination": "/about",    "permanent": true },
-    { "source": "/contacts.html", "destination": "/contacts", "permanent": true },
-    { "source": "/privacy.html",  "destination": "/privacy",  "permanent": true },
-    { "source": "/404.html",      "destination": "/404",      "permanent": true }
   ]
 }

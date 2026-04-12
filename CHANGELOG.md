@@ -10,6 +10,19 @@
 
 ---
 
+## [2.6.0] — 2025-05-13
+
+### Виправлено
+- **Сторінки /about, /contacts, /privacy на Vercel** — `cleanUrls: true` конфліктував з rewrites: Vercel стрипував `.html` з destination і не знаходив `pages/about.html`. Видалено `cleanUrls`, тепер rewrites працюють явно
+- **404 на Vercel** — тепер `/(.*) → /pages/404.html` перехоплює всі невідомі URL; без `cleanUrls` правило спрацьовує коректно
+- **Великий банер реклами** — замінено inline `width:728px;height:90px` на `display:block` з CSS-обмеженням через `.ad-slot-wrap`. `max-height:110px` на контейнері
+
+### Додано
+- **WHOIS Lookup** — перевірка домену через RDAP API (rdap.org): реєстратор, власник, дати реєстрації/спливання, nameservers, статуси, перевірка DNS через Cloudflare DoH
+- **ASCII Converter** — три режими: Text→Codes (DEC/HEX/BIN/OCT/HTML Entity/Unicode), Codes→Text, повна ASCII-таблиця (0–127) з пошуком та фільтром по групах
+
+---
+
 ## [2.5.7] — 2025-05-12
 
 ### Виправлено
