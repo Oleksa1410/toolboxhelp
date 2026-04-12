@@ -1,8 +1,28 @@
-﻿RewriteEngine On
+﻿# ToolboxHelp — Apache SPA routing для MAMP
+# Дозволяє pathname-routing без перезавантаження
+
+Options -MultiViews
+RewriteEngine On
+
 RewriteCond %{HTTPS} off
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Якщо запит до реального файлу або директорії — пропускаємо
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Маршрути сторінок → pages/
+RewriteRule ^about$     pages/about.html    [L]
+RewriteRule ^contacts$  pages/contacts.html [L]
+RewriteRule ^privacy$   pages/privacy.html  [L]
+
+# Усі інші маршрути → index.html (SPA)
+RewriteRule ^(?!pages/).*$ index.html [L]
+
+# Кастомна 404
 ErrorDocument 404 /pages/404.html
+
 php_value display_errors Off
 php_value date.timezone Europe/Warsaw

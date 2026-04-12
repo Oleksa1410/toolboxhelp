@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Контакти | ToolboxHelp.com</title>
 <meta name="description" content="Зв'яжіться з командою ToolboxHelp.com — відгуки, пропозиції, баги.">
-<meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
@@ -17,48 +16,174 @@
 .sp-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
 .sp-title{font-size:28px;font-weight:600;color:var(--text2);letter-spacing:-0.8px;margin-bottom:20px;line-height:1.2}
 .sp-body{font-size:14px;color:var(--text);line-height:1.9}
-.sp-body h2{font-size:16px;font-weight:600;color:var(--text2);margin:28px 0 10px;letter-spacing:-0.2px}
+.sp-body h2{font-size:16px;font-weight:600;color:var(--text2);margin:28px 0 10px}
 .sp-body p{margin-bottom:14px}
 .sp-body a{color:var(--accent);text-decoration:none}
 .sp-body a:hover{text-decoration:underline}
-.sp-body ul{padding-left:20px;margin-bottom:14px}
-.sp-body li{margin-bottom:6px}
-.sp-body strong{color:var(--text2)}
-.sp-body code{font-family:var(--mono);font-size:12px;background:var(--s2);border:1px solid var(--border);border-radius:3px;padding:1px 5px;color:var(--accent)}
 .sp-divider{border:none;border-top:1px solid var(--border);margin:28px 0}
 .sp-footer{display:flex;gap:18px;flex-wrap:wrap;margin-top:48px;padding-top:20px;border-top:1px solid var(--border);font-family:var(--mono);font-size:11px}
 .sp-footer a{color:var(--muted2);text-decoration:none;transition:color .12s}
 .sp-footer a:hover{color:var(--accent)}
 .sp-footer-copy{color:var(--muted);margin-right:auto}
+
+/* ── Contact Form ── */
+.cf-form{margin-top:8px}
+.cf-field{margin-bottom:16px}
+.cf-label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.cf-input,.cf-textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px 13px;color:var(--text2);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .12s}
+.cf-input:focus,.cf-textarea:focus{border-color:var(--accent)}
+.cf-textarea{min-height:140px;resize:vertical;line-height:1.6}
+.cf-file-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cf-file-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border:1px dashed var(--border2);border-radius:6px;font-family:var(--mono);font-size:12px;color:var(--muted2);cursor:pointer;transition:all .12s;background:var(--bg)}
+.cf-file-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cf-file-input{display:none}
+.cf-file-name{font-family:var(--mono);font-size:11px;color:var(--muted2)}
+.cf-submit{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#0d1117;font-family:var(--mono);font-size:13px;font-weight:700;padding:12px 24px;border-radius:7px;border:none;cursor:pointer;transition:all .15s;letter-spacing:.3px;margin-top:4px}
+.cf-submit:hover:not(:disabled){background:#2fffaa;transform:translateY(-1px)}
+.cf-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.cf-msg{margin-top:14px;padding:10px 14px;border-radius:6px;font-family:var(--mono);font-size:12px;display:none}
+.cf-msg.ok{background:rgba(24,224,112,.1);border:1px solid rgba(24,224,112,.25);color:var(--accent)}
+.cf-msg.err{background:var(--red-dim);border:1px solid rgba(224,85,85,.3);color:#f08080}
 </style>
 </head>
 <body style="background:var(--bg);min-height:100vh;display:block;overflow-y:auto">
 <div class="sp-wrap">
   <a href="/" class="sp-back">&#8592; ToolboxHelp.com</a>
+
   <div class="sp-eyebrow">Зворотній зв'язок</div>
   <h1 class="sp-title">Контакти</h1>
+
   <div class="sp-body">
-    <p>Ми будемо раді почути ваші відгуки, пропозиції щодо нових інструментів
-    або повідомлення про знайдені баги.</p>
+    <p>Ми будемо раді почути ваші відгуки, пропозиції щодо нових інструментів або повідомлення про знайдені баги.</p>
+
     <h2>Email</h2>
-    <p><a href="mailto:hello@toolboxhelp.com">hello@toolboxhelp.com</a></p>
-    <h2>Повідомити про баг</h2>
-    <p>Якщо щось не працює — опишіть проблему: який інструмент, що робили,
-    який браузер та ОС. Це допоможе швидко виправити.</p>
-    <h2>Запропонувати інструмент</h2>
-    <p>Якщо вам не вистачає якогось інструменту — напишіть.
-    Ми регулярно додаємо нові утиліти на основі запитів від користувачів.</p>
+    <p><a href="mailto:artur.oleksiuk.89@gmail.com">artur.oleksiuk.89@gmail.com</a></p>
+
     <hr class="sp-divider">
-    <p style="color:var(--muted2);font-size:13px">
-      Відповідаємо зазвичай протягом 1–2 робочих днів.
-    </p>
+
+    <h2>Написати нам</h2>
+
+    <!--
+      Для роботи форми потрібно:
+      1. Зареєструватись на https://formspree.io (безкоштовно — 50 листів/місяць)
+      2. Створити форму → отримати Form ID (наприклад: xpznkbbd)
+      3. Замінити YOUR_FORM_ID нижче на ваш ID
+      4. Для файлів — потрібен Formspree Gold план, або використовуй mailto як fallback
+    -->
+    <form class="cf-form" id="contact-form">
+      <div class="cf-field">
+        <label class="cf-label" for="cf-name">Ім'я *</label>
+        <input class="cf-input" type="text" id="cf-name" name="name"
+          placeholder="Ваше ім'я" required autocomplete="name">
+      </div>
+      <div class="cf-field">
+        <label class="cf-label" for="cf-email">Email *</label>
+        <input class="cf-input" type="email" id="cf-email" name="email"
+          placeholder="your@email.com" required autocomplete="email">
+      </div>
+      <div class="cf-field">
+        <label class="cf-label" for="cf-msg">Повідомлення *</label>
+        <textarea class="cf-textarea" id="cf-msg" name="message"
+          placeholder="Опишіть проблему, пропозицію або питання..." required></textarea>
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Файл (необов'язково)</label>
+        <div class="cf-file-wrap">
+          <label class="cf-file-btn" for="cf-file">
+            📎 Прикріпити файл
+          </label>
+          <input class="cf-file-input" type="file" id="cf-file" name="attachment" multiple
+            accept=".png,.jpg,.jpeg,.gif,.pdf,.txt,.csv,.json,.zip,.log">
+          <span class="cf-file-name" id="cf-file-name">Файл не обрано</span>
+        </div>
+      </div>
+
+      <button class="cf-submit" type="submit" id="cf-submit">
+        &#9654; Надіслати
+      </button>
+      <div class="cf-msg" id="cf-result"></div>
+    </form>
+
+    <hr class="sp-divider">
+    <p style="color:var(--muted2);font-size:13px">Відповідаємо зазвичай протягом 1–2 робочих днів.</p>
   </div>
+
   <div class="sp-footer">
-    <span class="sp-footer-copy">&#169; <script>(function(){var F=2026,n=new Date().getFullYear();document.write(n===F?F:F+"-"+n);})() </script>ToolboxHelp.com</span>
+    <span class="sp-footer-copy">&#169; <script>(function(){var F=2026,n=new Date().getFullYear();document.write(n===F?F:F+"-"+n);})()</script> ToolboxHelp.com</span>
     <a href="/about">Про нас</a>
     <a href="/contacts">Контакти</a>
     <a href="/privacy">Конфіденційність</a>
   </div>
 </div>
+
+<script>
+// Показуємо назву вибраного файлу
+document.getElementById('cf-file').addEventListener('change', function() {
+  const names = Array.from(this.files).map(f => f.name).join(', ');
+  document.getElementById('cf-file-name').textContent = names || 'Файл не обрано';
+});
+
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn    = document.getElementById('cf-submit');
+  const result = document.getElementById('cf-result');
+  const name   = document.getElementById('cf-name').value.trim();
+  const email  = document.getElementById('cf-email').value.trim();
+  const msg    = document.getElementById('cf-msg').value.trim();
+  const files  = document.getElementById('cf-file').files;
+
+  btn.disabled = true;
+  btn.textContent = '⏳ Надсилаємо...';
+  result.style.display = 'none';
+
+  // ── Спочатку спробуємо Formspree ──────────────────────────────────────────
+  // Замінити YOUR_FORM_ID на реальний ID з formspree.io
+  const FORMSPREE_ID = 'YOUR_FORM_ID';
+
+  if (FORMSPREE_ID !== 'YOUR_FORM_ID') {
+    try {
+      const data = new FormData();
+      data.append('name', name);
+      data.append('email', email);
+      data.append('message', msg);
+      data.append('_replyto', email);
+      data.append('_subject', 'ToolboxHelp: повідомлення від ' + name);
+      for (const file of files) data.append('attachment', file);
+
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: data,
+      });
+
+      if (res.ok) {
+        result.className = 'cf-msg ok';
+        result.textContent = '✓ Повідомлення надіслано! Ми відповімо протягом 1–2 робочих днів.';
+        result.style.display = 'block';
+        document.getElementById('contact-form').reset();
+        document.getElementById('cf-file-name').textContent = 'Файл не обрано';
+        btn.disabled = false;
+        btn.textContent = '▶ Надіслати';
+        return;
+      }
+    } catch (_) {}
+  }
+
+  // ── Fallback: відкриваємо email-клієнт ──────────────────────────────────────
+  const subject = encodeURIComponent('ToolboxHelp: повідомлення від ' + name);
+  const body    = encodeURIComponent(
+    'Від: ' + name + '\nEmail: ' + email + '\n\n' + msg +
+    (files.length ? '\n\n[Файли вкладено окремо: ' + Array.from(files).map(f=>f.name).join(', ') + ']' : '')
+  );
+  window.location.href = `mailto:artur.oleksiuk.89@gmail.com?subject=${subject}&body=${body}`;
+
+  result.className = 'cf-msg ok';
+  result.textContent = '✓ Відкривається ваш поштовий клієнт. Якщо нічого не відкрилось — напишіть на artur.oleksiuk.89@gmail.com напряму.';
+  result.style.display = 'block';
+  btn.disabled = false;
+  btn.textContent = '▶ Надіслати';
+});
+</script>
 </body>
 </html>

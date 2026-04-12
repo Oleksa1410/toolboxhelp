@@ -6,13 +6,6 @@
 
 import { TOOLS } from './tools.config.js';
 
-// ── Vercel Analytics ──────────────────────────────────────────────────────────
-// Працює тільки на Vercel. На локальному сервері — мовчки ігнорується.
-try {
-  const { inject } = await import('@vercel/analytics');
-  inject();
-} catch (_) { /* локальна розробка — модуль недоступний */ }
-
 // ── Динамічний імпорт усіх інструментів із конфігу ───────────────────────────
 
 const renderFns = {};
@@ -138,7 +131,6 @@ function navigate(id, silent) {
 
 // ── Sidebar ───────────────────────────────────────────────────────────────────
 
-// Назви груп — порядок визначає порядок секцій у меню
 const GROUP_LABELS = {
   css:      'CSS & Дизайн',
   text:     'Текст & Дані',
@@ -154,8 +146,6 @@ function buildNav() {
   const vis = getVisible().filter(t => !t.sys && t.id !== 'home');
   const sys = getVisible().filter(t =>  t.sys);
   const off = tools.filter(t => !t.enabled && !t.sys);
-
-  // ── Функції ──────────────────────────────────────────────────────────────────
 
   const grp = label => {
     const g = document.createElement('div');
@@ -179,17 +169,17 @@ function buildNav() {
 
     el.innerHTML =
       iconHtml + `<span class="nav-label">${t.name}</span>` +
-      (disabled           ? '<span class="nav-off">off</span>'   : '') +
+      (disabled            ? '<span class="nav-off">off</span>'   : '') +
       (!disabled && !t.sys ? '<span class="nav-badge">run</span>' : '');
     if (!disabled) el.addEventListener('click', () => navigate(t.id));
     nav.appendChild(el);
   };
 
-  // ── Головна окремо ───────────────────────────────────────────────────────────
+  // Головна окремо
   const homeT = tools.find(t => t.id === 'home' && t.enabled);
   if (homeT) item(homeT);
 
-  // ── Групи інструментів ───────────────────────────────────────────────────────
+  // Групи
   Object.entries(GROUP_LABELS).forEach(([groupId, groupLabel]) => {
     const groupTools = vis
       .filter(t => t.group === groupId)
@@ -199,21 +189,14 @@ function buildNav() {
     groupTools.forEach(t => item(t));
   });
 
-  // Інструменти без групи (крім home та sys)
-  const ungrouped = vis.filter(t => !t.group && t.id !== 'home');
-  if (ungrouped.length) {
-    grp('Інше');
-    ungrouped.forEach(t => item(t));
-  }
+  // Без групи
+  const ungrouped = vis.filter(t => !t.group);
+  if (ungrouped.length) { grp('Інше'); ungrouped.forEach(t => item(t)); }
 
-  // ── Система ──────────────────────────────────────────────────────────────────
-  if (sys.length) { grp('Система'); sys.forEach(t => item(t)); }
-
-  // ── Вимкнені ─────────────────────────────────────────────────────────────────
+  if (sys.length) { grp('Система');  sys.forEach(t => item(t)); }
   if (off.length) { grp('Вимкнені'); off.forEach(t => item(t, true)); }
 
-  document.getElementById('sf-count').textContent =
-    vis.filter(t => t.id !== 'home').length;
+  document.getElementById('sf-count').textContent = vis.length;
 
   if (window.lucide) window.lucide.createIcons();
 }
@@ -229,7 +212,6 @@ function closeMenu() { sidebar.classList.remove('open'); overlay.classList.remov
 
 burger?.addEventListener('click', () => sidebar.classList.contains('open') ? closeMenu() : openMenu());
 overlay?.addEventListener('click', closeMenu);
-
 document.getElementById('nav')?.addEventListener('click', e => {
   if (e.target.closest('.nav-item')) closeMenu();
 });
@@ -248,21 +230,31 @@ setInterval(() => {
 buildNav();
 
 // Відновлення з URL при завантаженні / F5
-// /aspect → 'aspect', / → 'home', /home → 'home'
-const pathId    = window.location.pathname.replace(/^\//, '') || 'home';
-const initialId = pathId === '' ? 'home' : pathId;
-const validId   = tools.find(t => t.id === initialId && t.enabled) ? initialId : 'home';
+// Витягуємо тільки перший сегмент шляху: /aspect → 'aspect', / → 'home'
+const rawPath   = window.location.pathname.replace(/^\/+/, '').split('/')[0] || 'home';
+const validId   = tools.find(t => t.id === rawPath && t.enabled) ? rawPath : 'home';
 navigate(validId, true);
 
 // Навігація кнопками браузера (назад/вперед)
 window.addEventListener('popstate', e => {
   const id = e.state?.id
-    || (window.location.pathname.replace(/^\//, '') || 'home');
+    || (window.location.pathname.replace(/^\/+/, '').split('/')[0] || 'home');
   navigate(id, true);
 });
 
-// Версія читається з файлу VERSION — той самий fetch що й sidebar
-fetch('VERSION')
+// Версія — fetch з кореня сайту (/VERSION), не залежить від поточного шляху
+fetch('/VERSION')
   .then(r => r.text())
-  .then(v => addLog('system: started v' + v.trim()))
-  .catch(() => addLog('system: started'));
+  .then(v => {
+    addLog('system: started v' + v.trim());
+    // Оновлюємо sidebar якщо fetch пройшов пізніше ніж відображення
+    const el = document.getElementById('app-version');
+    if (el && el.textContent === 'v—') el.textContent = 'v' + v.trim();
+  })
+  .catch(() => {
+    // Локальна розробка без кореневого сервера — спробуємо відносний шлях
+    fetch('VERSION')
+      .then(r => r.text())
+      .then(v => addLog('system: started v' + v.trim()))
+      .catch(() => addLog('system: started (local)'));
+  });

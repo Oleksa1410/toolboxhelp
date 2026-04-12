@@ -10,6 +10,21 @@
 
 ---
 
+## [2.5.6] — 2025-05-12
+
+### Виправлено
+- **Порожній екран після v2.5.5** — `await import('@vercel/analytics')` з bare module specifier вбивав весь ES-модуль у браузері без бандлера. Рядок видалено. Vercel Analytics працює через `/_vercel/insights/script.js` у HTML (цього достатньо)
+- **VERSION fetch** — тепер спочатку `/VERSION` (Vercel), потім `VERSION` (локально) — fallback для MAMP підпапки
+- **Pathname routing** — `rawPath.split('/')[0]` замість повного pathname — коректно працює у підпапці MAMP (`/toolbox/aspect` → `aspect`)
+- **404 сторінка** — catch-all rewrite `/(.*) → /pages/404.html` у `vercel.json`
+
+### Додано
+- **`.htaccess`** — Apache SPA routing для MAMP: невідомі шляхи → `index.html`, `/about` → `pages/about.html`, custom `ErrorDocument 404`
+- **Google AdSense** — `ca-pub-1778963811750250` скрипт у `<head>` `index.html`
+- **Контактна форма** — поля: ім'я, email, повідомлення, прикріплення файлів; Formspree + `mailto:` fallback; email: `artur.oleksiuk.89@gmail.com`
+
+---
+
 ## [2.5.5] — 2025-05-10
 
 ### Змінено

@@ -34,14 +34,25 @@
     { "source": "/about",    "destination": "/pages/about.html" },
     { "source": "/contacts", "destination": "/pages/contacts.html" },
     { "source": "/privacy",  "destination": "/pages/privacy.html" },
-    { "source": "/404",      "destination": "/pages/404.html" },
 
-    {
-      "source": "/(aspect|units|color|password|textcount|qrbar|hash|json|base64|diff|urlencode|dummydata|markdown|admin)",
-      "destination": "/index.html"
-    },
+    { "source": "/aspect",    "destination": "/index.html" },
+    { "source": "/units",     "destination": "/index.html" },
+    { "source": "/color",     "destination": "/index.html" },
+    { "source": "/password",  "destination": "/index.html" },
+    { "source": "/textcount", "destination": "/index.html" },
+    { "source": "/qrbar",     "destination": "/index.html" },
+    { "source": "/hash",      "destination": "/index.html" },
+    { "source": "/json",      "destination": "/index.html" },
+    { "source": "/base64",    "destination": "/index.html" },
+    { "source": "/diff",      "destination": "/index.html" },
+    { "source": "/urlencode", "destination": "/index.html" },
+    { "source": "/dummydata", "destination": "/index.html" },
+    { "source": "/markdown",  "destination": "/index.html" },
+    { "source": "/admin",     "destination": "/index.html" },
 
-    { "source": "/", "destination": "/index.html" }
+    { "source": "/",          "destination": "/index.html" },
+
+    { "source": "/(.*)",      "destination": "/pages/404.html" }
   ],
 
   "redirects": [
