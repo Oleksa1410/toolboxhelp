@@ -1,70 +1,76 @@
 ﻿# ToolboxHelp.com
 
-Набір блискавичних офлайн-утиліт для веброзробників.
-Без завантажень, без реєстрацій — тільки код.
+Blazing-fast offline-first utilities for web developers.
+No downloads, no sign-ups — just code.
 
-**Версія:** 2.5.4 · **Сайт:** [toolboxhelp.com](https://toolboxhelp.com)
+**Version:** 2.7.0 · **Site:** [toolboxhelp.com](https://toolboxhelp.com)  
+**Languages:** 🇺🇦 Ukrainian · 🇬🇧 English
 
 ---
 
-## Інструменти (13)
+## Tools (15)
 
-### CSS & Дизайн
-| ID | Назва | Опис |
-|----|-------|------|
-| `units` | CSS Units Converter | Конвертер px · rem · em · vw · vh |
+### CSS & Design
+| ID | Name | Description |
+|----|------|-------------|
+| `units` | CSS Units Converter | px · rem · em · vw · vh |
 | `color` | Color Converter | HEX ↔ RGB ↔ HSL |
-| `aspect` | Aspect Ratio | Калькулятор співвідношення сторін |
+| `aspect` | Aspect Ratio | Aspect ratio calculator |
 
-### Текст & Дані
-| ID | Назва | Опис |
-|----|-------|------|
-| `textcount` | Text Counter | Символи · слова · рядки · речення |
-| `diff` | Diff Checker | Порівняння двох текстів (LCS) |
-| `markdown` | Markdown Editor | Редактор з live preview |
-| `dummydata` | Dummy Data | Генератор тестових користувачів |
+### Text & Data
+| ID | Name | Description |
+|----|------|-------------|
+| `textcount` | Text Counter | Characters · words · lines |
+| `diff` | Diff Checker | Compare two text versions (LCS) |
+| `markdown` | Markdown Editor | Editor with live preview |
+| `dummydata` | Dummy Data | Test user data generator |
 
-### Кодування
-| ID | Назва | Опис |
-|----|-------|------|
-| `base64` | Base64 Encoder | Encode/Decode тексту і файлів |
-| `urlencode` | URL Encoder | Encode/Decode · розбір URL |
+### Encoding
+| ID | Name | Description |
+|----|------|-------------|
+| `base64` | Base64 Encoder | Encode/Decode text and files |
+| `urlencode` | URL Encoder | Encode/Decode · URL parser |
 | `hash` | Hash Generator | MD5 · SHA-1/256/384/512 |
+| `ascii` | ASCII Converter | Text ↔ ASCII/Hex/Binary/Unicode |
 
-### Генератори
-| ID | Назва | Опис |
-|----|-------|------|
-| `password` | Password Gen | Генератор безпечних паролів |
-| `qrbar` | QR / Barcode | QR та штрих-коди, PNG/SVG |
+### Generators
+| ID | Name | Description |
+|----|------|-------------|
+| `password` | Password Gen | Secure password generator |
+| `qrbar` | QR / Barcode | QR codes and barcodes, PNG/SVG |
 
-### Валідатори
-| ID | Назва | Опис |
-|----|-------|------|
-| `json` | JSON Validator | Форматування, валідація, мінімайзер |
+### Validators
+| ID | Name | Description |
+|----|------|-------------|
+| `json` | JSON Validator | Format, validate, minify JSON |
+| `whois` | WHOIS Lookup | Domain info via RDAP API |
 
 ---
 
-## Структура проекту
+## Project Structure
 
 ```
 toolbox/
-├── index.html              ← shell-сторінка
-├── 404.html                ← сторінка помилки
-├── about.html              ← Про нас
-├── contacts.html           ← Контакти
-├── privacy.html            ← Політика конфіденційності
-├── vercel.json             ← конфіг деплою Vercel
-├── VERSION                 ← поточна версія (тільки тут!)
-├── CHANGELOG.md            ← історія змін
-├── README.md               ← цей файл
+├── index.html              ← Single HTML shell
+├── pages/
+│   ├── about.html          ← About page
+│   ├── contacts.html       ← Contact page (Formspree form)
+│   ├── privacy.html        ← Privacy policy
+│   └── 404.html            ← Error page
+├── vercel.json             ← Vercel deployment config
+├── .htaccess               ← Apache fallback routing
+├── VERSION                 ← Current version (edit only here!)
+├── CHANGELOG.md            ← Version history
+├── README.md               ← This file
 ├── css/
 │   └── style.css
 ├── img/
 │   └── favicon.ico
 └── js/
-    ├── main.js             ← роутер, навігація, стан, buildNav
-    ├── tools.config.js     ← реєстр + групи + tips
-    ├── admin.config.js     ← хеш пароля (не комітити!)
+    ├── main.js             ← Router, navigation, state, i18n
+    ├── i18n.js             ← Translation system (UK/EN)
+    ├── tools.config.js     ← Tool registry + groups + tips
+    ├── admin.config.js     ← Admin password hash (don't commit!)
     ├── ui/
     │   └── components.js
     └── tools/
@@ -72,121 +78,158 @@ toolbox/
         ├── password.js, textcount.js, qrbar.js
         ├── hash.js, json.js, base64.js, diff.js
         ├── urlencode.js, dummydata.js, markdown.js
+        ├── whois.js, ascii.js
         ├── admin.js
         └── _template.js
 ```
 
 ---
 
-## Запуск локально
+## Local Development
 
 ```bash
-# Python (вбудований сервер)
-cd toolbox
+# Python (recommended - supports SPA routing)
 python3 -m http.server 3000
-# відкрити http://localhost:3000
+# Then open http://localhost:3000
 
-# Node.js
-npx serve .
+# Node.js (with SPA support)
+npx serve . --single
 ```
+
+> ⚠️ Pathname routing (`/aspect`, `/units`) requires a server. `file://` won't work.
 
 ---
 
-## Як додати новий інструмент
+## Adding a New Tool
 
-**Крок 1** — створи `js/tools/mytool.js`:
+**Step 1** — Create `js/tools/mytool.js`:
 ```js
+import { t } from '../i18n.js';  // optional, for i18n
+
 export function renderMyTool(el, ctx) {
-  const { notify, copyText } = ctx;
+  const { notify, copyText, t } = ctx;
   el.innerHTML = `<div class="card">...</div>`;
 }
 ```
 
-**Крок 2** — додай до `tools.config.js`:
+**Step 2** — Register in `tools.config.js`:
 ```js
 {
   id:      'mytool',
-  lucide:  'star',          // іконка lucide.dev/icons
+  lucide:  'star',          // icon from lucide.dev/icons
   icon:    '★',             // emoji fallback
   name:    'My Tool',
-  desc:    'Короткий опис',
+  desc:    'Description',
   file:    'mytool',
   export:  'renderMyTool',
-  order:   14,
+  order:   16,
   group:   'generate',      // css | text | encode | generate | validate
   enabled: true,
-  tip: { title: 'Заголовок', text: 'HTML-текст довідки' },
+  tip: { title: 'Tip title', text: 'HTML tip text' },
 },
 ```
 
-Більше нічого не треба — меню, головна, адмінка підхоплять автоматично.
+**Step 3** — Add translations to `js/i18n.js`:
+```js
+// In uk section:
+'tool.mytool.name': 'Мій Інструмент',
+'tool.mytool.desc': 'Опис',
+
+// In en section:
+'tool.mytool.name': 'My Tool',
+'tool.mytool.desc': 'Description',
+```
+
+**Step 4** — Add rewrite to `vercel.json`:
+```json
+{ "source": "/mytool", "destination": "/index.html" }
+```
+
+Nothing else needed — menu, home page, and admin panel update automatically.
 
 ---
 
-## Версіонування
+## i18n (Internationalization)
 
-Версія зберігається **тільки у файлі `VERSION`**.
-`index.html` і `main.js` читають її через `fetch('VERSION')`.
+Languages: **Ukrainian (uk)** · **English (en)**
 
-| Зміна | Версія | Що оновити |
-|-------|--------|-----------|
-| Баг-фікс, косметика | PATCH +0.0.1 | `VERSION` → `CHANGELOG.md` |
-| Новий інструмент | MINOR +0.1.0 | `VERSION` → `CHANGELOG.md` → `README.md` |
-| Великий рефакторинг | MAJOR +1.0.0 | `VERSION` → `CHANGELOG.md` → `README.md` |
+The language switcher is in the topbar (UK / EN buttons).
 
----
-
-## Групи меню
-
-Групи визначаються полем `group` у `tools.config.js`:
-
-| group | Секція в меню |
-|-------|--------------|
-| `css` | CSS & Дизайн |
-| `text` | Текст & Дані |
-| `encode` | Кодування |
-| `generate` | Генератори |
-| `validate` | Валідатори |
-| `null` | без секції (Головна, Адмін) |
+| What | How |
+|------|-----|
+| All translations | `js/i18n.js` — `TRANSLATIONS.uk` and `TRANSLATIONS.en` |
+| Get translation | `t('key')` from `import { t } from '../i18n.js'` |
+| In tools | `ctx.t` is passed in context |
+| HTML elements | `data-i18n="key"` attribute — auto-applied |
+| Auto-detect | Browser language → localStorage → URL `?lang=en` |
+| SEO | `hreflang` alternate links in `<head>` |
 
 ---
 
-## Деплой на Vercel
+## Versioning
 
-1. Підключи репозиторій у [vercel.com/new](https://vercel.com/new)
+Version lives **only in the `VERSION` file**.
+
+| Change | Version | What to update |
+|--------|---------|----------------|
+| Bug fix, cosmetic | PATCH +0.0.1 | `VERSION` → `CHANGELOG.md` |
+| New tool / feature | MINOR +0.1.0 | `VERSION` → `CHANGELOG.md` → `README.md` |
+| Full rewrite | MAJOR +1.0.0 | `VERSION` → `CHANGELOG.md` → `README.md` |
+
+---
+
+## Menu Groups
+
+| `group` | Menu section (UK) | Menu section (EN) |
+|---------|-------------------|-------------------|
+| `css` | CSS & Дизайн | CSS & Design |
+| `text` | Текст & Дані | Text & Data |
+| `encode` | Кодування | Encoding |
+| `generate` | Генератори | Generators |
+| `validate` | Валідатори | Validators |
+| `null` | — (no section) | — |
+
+---
+
+## Vercel Deployment
+
+1. Connect repo at [vercel.com/new](https://vercel.com/new)
 2. Framework Preset: **Other**
-3. Root Directory: `toolbox/` (або де лежать файли)
-4. Build Command: (порожньо — статичний сайт)
+3. Root Directory: `toolbox/` (or wherever files are)
+4. Build Command: (empty — static site)
 5. Output Directory: `.`
 
-`vercel.json` вже налаштований: SPA routing, кешування, security headers.
+`vercel.json` is pre-configured: explicit tool rewrites, pages/ rewrites, 404 catch-all, cache headers, security headers.
+
+> **Important:** `cleanUrls: true` is intentionally **not set** — it conflicts with `pages/*.html` rewrites.
 
 ---
 
-## Адмінка
+## Admin Panel
 
-Пароль — SHA-256 хеш у `js/admin.config.js`.
+Password is stored as SHA-256 hash in `js/admin.config.js`.
 
-Генерація хешу (консоль браузера F12):
+Generate hash (browser console F12):
 ```js
 const h = async p => Array.from(
   new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(p)))
 ).map(b => b.toString(16).padStart(2,'0')).join('');
-h('ТвійПароль').then(console.log);
+h('YourPassword').then(console.log);
 ```
 
-`.gitignore` — обов'язково:
+`.gitignore`:
 ```
 js/admin.config.js
 ```
 
 ---
 
-## Технічний стек
+## Tech Stack
 
-- **Vanilla JS** — ES-модулі, без фреймворків
-- **Lucide Icons** — SVG іконки (CDN)
-- **Geist / Geist Mono** — шрифти (Google Fonts)
-- **CSS Custom Properties** — темна схема `#0d1117`
-- **Vercel** — хостинг + analytics
-- **history.pushState** — URL routing (`#tool-id`)
+- **Vanilla JS** — ES modules, zero runtime dependencies
+- **i18n** — custom lightweight translation system (`js/i18n.js`)
+- **Lucide Icons** — SVG icons via CDN
+- **Geist / Geist Mono** — fonts (Google Fonts)
+- **CSS Custom Properties** — dark theme `#0d1117`
+- **Vercel** — hosting + analytics
+- **history.pushState** — URL routing (`/tool-id`)

@@ -10,6 +10,26 @@
 
 ---
 
+## [2.7.0] — 2025-05-14
+
+### Додано
+- **i18n система** (`js/i18n.js`) — підтримка UK/EN з автодетектом мови браузера, localStorage, URL-параметром `?lang=en`
+- **Language switcher** — кнопки UK / EN у topbar, зберігають вибір між сесіями
+- **SEO для багатомовності** — `<link rel="alternate" hreflang>` в `index.html`, `<html lang>` змінюється динамічно
+- Функція `t(key)` доступна у всіх інструментах через `ctx.t`
+
+### Змінено
+- `home.js` — повністю перекладений через i18n
+- `main.js` — nav groups, nav labels, notify повідомлення через `t()`
+- `index.html` — `data-i18n` атрибути на footer, sidebar, topbar; hreflang SEO теги; canonical
+- `pages/about.html`, `contacts.html`, `privacy.html` — оновлено відповідно до завантажених файлів; виправлено баг у Formspree (умова `!== 'YOUR_FORM_ID'`)
+- **Рекламний банер** — `height:100px; max-height:100px` на `.ad-bar`, `height:90px !important` на `.ad-slot-wrap ins` — жорстке обмеження
+
+### Виправлено
+- `contacts.html` — Formspree ніколи не надсилав через баг в умові (`!== 'mvzdpwwl'` замість `!== 'YOUR_FORM_ID'`)
+
+---
+
 ## [2.6.0] — 2025-05-13
 
 ### Виправлено

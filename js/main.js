@@ -5,31 +5,36 @@
  */
 
 import { TOOLS } from './tools.config.js';
+import { t, getLang, setLang, onLangChange, applyTranslations } from './i18n.js';
 
 // ── Динамічний імпорт інструментів ────────────────────────────────────────────
-// Кожен інструмент імпортується окремо — якщо один впав, решта працюють
 
 const renderFns = {};
 
 await Promise.allSettled(
-  TOOLS.map(async t => {
+  TOOLS.map(async tool => {
     try {
-      const mod = await import(`./tools/${t.file}.js`);
-      renderFns[t.id] = mod[t.export];
+      const mod = await import(`./tools/${tool.file}.js`);
+      renderFns[tool.id] = mod[tool.export];
     } catch (e) {
-      console.warn(`[ToolboxHelp] Не вдалося завантажити інструмент "${t.id}":`, e.message);
+      console.warn(`[ToolboxHelp] Failed to load tool "${tool.id}":`, e.message);
     }
   })
 );
 
 // ── State ─────────────────────────────────────────────────────────────────────
 
-const DEFAULT_TOOLS = TOOLS.map(t => ({
-  ...t,
+const DEFAULT_TOOLS = TOOLS.map(tool => ({
+  ...tool,
+  get name() { return t(`tool.${tool.id}.name`) || tool._name; },
+  _name: tool.name,
   render: (el) => {
-    const fn = renderFns[t.id];
-    if (!fn) { el.innerHTML = `<div class="card" style="color:var(--red)">Інструмент "${t.id}" не завантажився.</div>`; return; }
-    t.sys ? fn(el, adminCtx()) : fn(el, ctx);
+    const fn = renderFns[tool.id];
+    if (!fn) {
+      el.innerHTML = `<div class="card" style="color:var(--red)">Tool "${tool.id}" failed to load.</div>`;
+      return;
+    }
+    tool.sys ? fn(el, adminCtx()) : fn(el, ctx);
   },
 }));
 
@@ -88,15 +93,15 @@ function notify(msg) {
 
 function copyText(text, lbl) {
   navigator.clipboard.writeText(text)
-    .then(() => notify('Скопійовано: ' + (lbl || text)));
+    .then(() => notify(t('ui.copied') + ': ' + (lbl || text)));
 }
 
 // ── Context ───────────────────────────────────────────────────────────────────
 
-const ctx = { getVisible, navigate, notify, copyText };
+const ctx = { getVisible, navigate, notify, copyText, t, getLang };
 
 function adminCtx() {
-  return { tools, DEFAULT_TOOLS, getVisible, navigate, saveState, buildNav, addLog, notify, dragSrcRef };
+  return { tools, DEFAULT_TOOLS, getVisible, navigate, saveState, buildNav, addLog, notify, t, dragSrcRef };
 }
 
 // ── Navigation ────────────────────────────────────────────────────────────────
@@ -123,7 +128,7 @@ function navigate(id, silent) {
   try {
     tool.render(panel);
   } catch (e) {
-    panel.innerHTML = `<div class="card" style="color:var(--red)">Помилка рендеру "${id}": ${e.message}</div>`;
+    panel.innerHTML = `<div class="card" style="color:var(--red)">${t('ui.error')} "${id}": ${e.message}</div>`;
     console.error('[ToolboxHelp] render error:', e);
   }
 
@@ -145,14 +150,6 @@ function navigate(id, silent) {
 
 // ── Sidebar ───────────────────────────────────────────────────────────────────
 
-const GROUP_LABELS = {
-  css:      'CSS & Дизайн',
-  text:     'Текст & Дані',
-  encode:   'Кодування',
-  generate: 'Генератори',
-  validate: 'Валідатори',
-};
-
 function buildNav() {
   const nav = document.getElementById('nav');
   if (!nav) return;
@@ -162,48 +159,80 @@ function buildNav() {
   const sys = getVisible().filter(t =>  t.sys);
   const off = tools.filter(t => !t.enabled && !t.sys);
 
-  const grp = label => {
+  const grp = labelKey => {
     const g = document.createElement('div');
     g.className = 'nav-group';
-    g.textContent = label;
+    g.textContent = t(labelKey);
     nav.appendChild(g);
   };
 
-  const item = (t, disabled = false) => {
+  const item = (tool, disabled = false) => {
     const el = document.createElement('div');
-    el.className = ['nav-item', current === t.id ? 'active' : '', disabled ? 'nav-disabled' : '']
+    el.className = ['nav-item', current === tool.id ? 'active' : '', disabled ? 'nav-disabled' : '']
       .filter(Boolean).join(' ');
-    el.dataset.id = t.id;
-    const iconHtml = t.lucide
-      ? `<span class="nav-icon"><i data-lucide="${t.lucide}"></i></span>`
-      : `<span class="nav-icon">${t.icon}</span>`;
+    el.dataset.id = tool.id;
+    const iconHtml = tool.lucide
+      ? `<span class="nav-icon"><i data-lucide="${tool.lucide}"></i></span>`
+      : `<span class="nav-icon">${tool.icon}</span>`;
     el.innerHTML =
-      iconHtml + `<span class="nav-label">${t.name}</span>` +
-      (disabled            ? '<span class="nav-off">off</span>'    : '') +
-      (!disabled && !t.sys ? '<span class="nav-badge">run</span>'  : '');
-    if (!disabled) el.addEventListener('click', () => navigate(t.id));
+      iconHtml + `<span class="nav-label">${t(`tool.${tool.id}.name`) || tool._name}</span>` +
+      (disabled            ? `<span class="nav-off">${t('ui.off')}</span>`  : '') +
+      (!disabled && !tool.sys ? `<span class="nav-badge">${t('ui.run')}</span>` : '');
+    if (!disabled) el.addEventListener('click', () => navigate(tool.id));
     nav.appendChild(el);
+  };
+
+  const GROUP_KEYS = {
+    css:      'group.css',
+    text:     'group.text',
+    encode:   'group.encode',
+    generate: 'group.generate',
+    validate: 'group.validate',
   };
 
   const homeT = tools.find(t => t.id === 'home' && t.enabled);
   if (homeT) item(homeT);
 
-  Object.entries(GROUP_LABELS).forEach(([groupId, groupLabel]) => {
+  Object.entries(GROUP_KEYS).forEach(([groupId, labelKey]) => {
     const groupTools = vis.filter(t => t.group === groupId).sort((a, b) => a.order - b.order);
     if (!groupTools.length) return;
-    grp(groupLabel);
+    grp(labelKey);
     groupTools.forEach(t => item(t));
   });
 
   const ungrouped = vis.filter(t => !t.group);
-  if (ungrouped.length) { grp('Інше'); ungrouped.forEach(t => item(t)); }
-  if (sys.length)       { grp('Система');  sys.forEach(t => item(t)); }
-  if (off.length)       { grp('Вимкнені'); off.forEach(t => item(t, true)); }
+  if (ungrouped.length) { grp('group.other'); ungrouped.forEach(t => item(t)); }
+  if (sys.length)       { grp('group.system');   sys.forEach(t => item(t)); }
+  if (off.length)       { grp('group.disabled'); off.forEach(t => item(t, true)); }
 
   const cnt = document.getElementById('sf-count');
   if (cnt) cnt.textContent = vis.length;
 
   if (window.lucide) window.lucide.createIcons();
+}
+
+// ── Language switcher ─────────────────────────────────────────────────────────
+
+function initLangSwitcher() {
+  const btns = document.querySelectorAll('.lang-btn');
+  const lang = getLang();
+
+  btns.forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+    btn.addEventListener('click', () => {
+      if (btn.dataset.lang === getLang()) return;
+      setLang(btn.dataset.lang);
+      btns.forEach(b => b.classList.toggle('active', b.dataset.lang === getLang()));
+      // Rebuild nav and re-render current tool
+      buildNav();
+      applyTranslations(document);
+      if (current) navigate(current, true);
+    });
+  });
+
+  // Apply saved language on init
+  setLang(lang);
+  applyTranslations(document);
 }
 
 // ── Burger menu ───────────────────────────────────────────────────────────────
@@ -233,6 +262,7 @@ setInterval(updateClock, 1000);
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 
+initLangSwitcher();
 buildNav();
 
 const rawPath = window.location.pathname.replace(/^\/+/, '').split('/')[0] || 'home';
@@ -244,7 +274,6 @@ window.addEventListener('popstate', e => {
   navigate(id, true);
 });
 
-// Версія — спочатку /VERSION (Vercel), потім VERSION (локально)
 fetch('/VERSION')
   .then(r => r.ok ? r.text() : Promise.reject())
   .catch(() => fetch('VERSION').then(r => r.text()))

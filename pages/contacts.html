@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Контакти | ToolboxHelp.com</title>
-<meta name="description" content="Зв'яжіться з командою ToolboxHelp.com — відгуки, пропозиції, баги.">
+<title>Contacts | ToolboxHelp.com</title>
+<meta name="description" content="Contact the ToolboxHelp.com team — feedback, suggestions, bugs.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
@@ -50,26 +50,25 @@
 <div class="sp-wrap">
   <a href="/" class="sp-back">&#8592; ToolboxHelp.com</a>
 
-  <div class="sp-eyebrow">Зворотній зв'язок</div>
-  <h1 class="sp-title">Контакти</h1>
+  <div class="sp-eyebrow">Feedback</div>
 
   <div class="sp-body">
-    <p>Ми будемо раді почути ваші відгуки, пропозиції щодо нових інструментів або повідомлення про знайдені баги.</p>
+    <p>We would love to hear your feedback, suggestions for new tools, or bug reports.</p>
 
-    <h2>Написати нам</h2>
+    <h2>Write to us</h2>
 
     <!--
-      Для роботи форми потрібно:
-      1. Зареєструватись на https://formspree.io (безкоштовно — 50 листів/місяць)
-      2. Створити форму → отримати Form ID (наприклад: xpznkbbd)
-      3. Замінити YOUR_FORM_ID нижче на ваш ID
-      4. Для файлів — потрібен Formspree Gold план, або використовуй mailto як fallback
+      To make the form work you need:
+      1. Register at https://formspree.io (free — 50 emails/month)
+      2. Create a form → get a Form ID (for example: xpznkbbd)
+      3. Replace YOUR_FORM_ID below with your ID
+      4. For files — you need a Formspree Gold plan, or use mailto as a fallback
     -->
     <form class="cf-form" id="contact-form">
       <div class="cf-field">
-        <label class="cf-label" for="cf-name">Ім'я *</label>
+        <label class="cf-label" for="cf-name">Name *</label>
         <input class="cf-input" type="text" id="cf-name" name="name"
-          placeholder="Ваше ім'я" required autocomplete="name">
+          placeholder="Your name" required autocomplete="name">
       </div>
       <div class="cf-field">
         <label class="cf-label" for="cf-email">Email *</label>
@@ -77,24 +76,24 @@
           placeholder="your@email.com" required autocomplete="email">
       </div>
       <div class="cf-field">
-        <label class="cf-label" for="cf-msg">Повідомлення *</label>
+        <label class="cf-label" for="cf-msg">Message *</label>
         <textarea class="cf-textarea" id="cf-msg" name="message"
-          placeholder="Опишіть проблему, пропозицію або питання..." required></textarea>
+          placeholder="Describe your problem, suggestion or question..." required></textarea>
       </div>
       <div class="cf-field">
-        <label class="cf-label">Файл (необов'язково)</label>
+        <label class="cf-label">File (optional)</label>
         <div class="cf-file-wrap">
           <label class="cf-file-btn" for="cf-file">
-            📎 Прикріпити файл
+            📎 Attach file
           </label>
           <input class="cf-file-input" type="file" id="cf-file" name="attachment" multiple
             accept=".png,.jpg,.jpeg,.gif,.pdf,.txt,.csv,.json,.zip,.log">
-          <span class="cf-file-name" id="cf-file-name">Файл не обрано</span>
+          <span class="cf-file-name" id="cf-file-name">File not selected</span>
         </div>
       </div>
 
       <button class="cf-submit" type="submit" id="cf-submit">
-        &#9654; Надіслати
+        &#9654; Send
       </button>
       <div class="cf-msg" id="cf-result"></div>
     </form>
@@ -102,9 +101,9 @@
 
   <div class="sp-footer">
     <span class="sp-footer-copy">&#169; <script>(function(){var F=2026,n=new Date().getFullYear();document.write(n===F?F:F+"-"+n);})()</script> ToolboxHelp.com</span>
-    <a href="/about">Про нас</a>
-    <a href="/contacts">Контакти</a>
-    <a href="/privacy">Конфіденційність</a>
+    <a href="/about">About Us</a>
+    <a href="/contacts">Contacts</a>
+    <a href="/privacy">Privacy Policy</a>
   </div>
 </div>
 
@@ -133,7 +132,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
   // Замінити YOUR_FORM_ID на реальний ID з formspree.io
   const FORMSPREE_ID = 'mvzdpwwl';
 
-  if (FORMSPREE_ID !== 'mvzdpwwl') {
+  if (FORMSPREE_ID !== 'YOUR_FORM_ID') {
     try {
       const data = new FormData();
       data.append('name', name);
