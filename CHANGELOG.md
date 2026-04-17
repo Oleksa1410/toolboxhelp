@@ -10,13 +10,28 @@
 
 ---
 
+## [2.7.2] — 2025-05-15
+
+### Змінено
+- **WHOIS Lookup** — повний редизайн з 4 вкладками:
+  1. **WHOIS/RDAP** — IP Address, Registrar Information, Important Dates, Nameservers, Domain Status, Contact Information, Raw RDAP JSON, About WHOIS/RDAP
+  2. **DNS Records** — A, AAAA, MX, NS, TXT, CNAME, SOA, CAA через Cloudflare DoH; таблиця з NAME/TTL/VALUE
+  3. **Uptime** — HTTP/HTTPS перевірка доступності з RTT, Historical Data, About Uptime Monitoring
+  4. **Diagnostics** — Ping і Traceroute через HackerTarget API; About Ping & Traceroute
+- Skeleton loader при завантаженні кожної вкладки
+- Lazy-load: вкладки завантажуються тільки при першому відкритті
+- Підтримка як доменів так і IP-адрес
+
+---
+
+---
+
 ## [2.7.1] — 2025-05-15
 
 ### Виправлено
 - **Висота рекламного блоку 285px** — AdSense JS додає `style="height:auto !important; max-height:none !important"` прямо на `.ad-bar` і `<ins>` — CSS не може це перевизначити. Рішення: новий `.ad-bar-outer` з `height:100px; overflow:hidden` який AdSense ніколи не чіпає. `.ad-bar` може рости скільки завгодно — outer обрізає
 - **404 на Vercel** — `404.html` тепер знаходиться у **корені проекту** з правильними відносними шляхами (`css/style.css`, `img/favicon.ico`). Vercel автоматично подає `404.html` з кореня для будь-яких 404 помилок — не потрібні додаткові `routes` або `rewrites`
 - Прибрано `data-ad-format="auto"` і `data-full-width-responsive="true"` з `<ins>` — вони дозволяли AdSense самовільно змінювати розмір
-
 ---
 
 ## [2.7.0] — 2025-05-14
@@ -36,21 +51,6 @@
 
 ### Виправлено
 - `contacts.html` — Formspree ніколи не надсилав через баг в умові (`!== 'mvzdpwwl'` замість `!== 'YOUR_FORM_ID'`)
-
----
-
-## [2.6.1] — 2025-05-15
-
-### Змінено
-- **WHOIS Lookup** — повний редизайн з 4 вкладками:
-  1. **WHOIS/RDAP** — IP, Registrar, Important Dates, Nameservers, Domain Status, Contacts, Raw RDAP JSON
-  2. **DNS Records** — A, AAAA, MX, NS, TXT, CNAME, SOA, CAA через Cloudflare DoH
-  3. **Uptime** — HTTP/HTTPS перевірка доступності з RTT, посилання на зовнішні сервіси моніторингу
-  4. **Diagnostics** — Ping і Traceroute через HackerTarget API з поясненням обмежень браузера
-- Skeleton loader при завантаженні кожної вкладки
-- Lazy-load: вкладки завантажуються тільки при першому відкритті
-
----
 
 ## [2.6.0] — 2025-05-13
 
