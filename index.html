@@ -1,23 +1,22 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ToolboxHelp.com — Tools for web developers</title>
-<meta name="description" content="ToolboxHelp is a free set of offline utilities for web developers. CSS converter, password generator, QR codes, JSON validator, Base64, Diff checker and 13+ more tools. No registration required.">
-<meta name="keywords" content="css units converter, color converter, password generator, qr code, json validator, base64 encoder, hash generator, diff checker, url encoder, markdown editor, whois lookup, ascii converter, developer tools">
+<title>ToolboxHelp.com — Інструменти для веброзробників</title>
+<meta name="description" content="ToolboxHelp — безкоштовний набір офлайн-утиліт для веброзробників. CSS конвертер, генератор паролів, QR-коди, JSON validator, Base64, Diff checker та ще 13+ інструментів. Без реєстрації.">
+<meta name="keywords" content="css units converter, color converter, password generator, qr code, json validator, base64 encoder, hash generator, diff checker, url encoder, markdown editor, whois lookup, ascii converter, developer tools, веброзробник">
 <meta name="author" content="ToolboxHelp.com">
 <!-- Open Graph -->
 <meta property="og:title" content="ToolboxHelp.com — Developer Tools">
 <meta property="og:description" content="Blazing-fast offline-first utilities for web developers. No downloads, no sign-ups.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://toolboxhelp.com">
-<meta property="og:locale" content="en_US">
-<meta property="og:locale:alternate" content="uk_UA">
-<meta name="google-adsense-account" content="ca-pub-1778963811750250">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:locale:alternate" content="en_US">
 <!-- SEO: multilingual alternate links -->
-<link rel="alternate" hreflang="uk" href="https://toolboxhelp.com/?lang=uk">
-<link rel="alternate" hreflang="en" href="https://toolboxhelp.com/">
+<link rel="alternate" hreflang="uk" href="https://toolboxhelp.com/">
+<link rel="alternate" hreflang="en" href="https://toolboxhelp.com/?lang=en">
 <link rel="alternate" hreflang="x-default" href="https://toolboxhelp.com/">
 <!-- Canonical -->
 <link rel="canonical" href="https://toolboxhelp.com/">
@@ -29,8 +28,7 @@
 <!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1778963811750250"
-     crossorigin="anonymous"></script></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1778963811750250" crossorigin="anonymous"></script>
 <!-- Version loader -->
 <script>
   fetch('/VERSION').then(r => r.ok ? r.text() : Promise.reject())
@@ -68,8 +66,8 @@
       <span id="tb-clock">--:--:--</span>
       <!-- Language switcher -->
       <div class="lang-switch" id="lang-switch">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="uk">UK</button>
+        <button class="lang-btn active" data-lang="uk">UK</button>
+        <button class="lang-btn" data-lang="en">EN</button>
       </div>
     </div>
   </div>
@@ -82,27 +80,25 @@
         <span id="footer-year"></span> ToolboxHelp.com
       </span>
       <nav class="site-footer-nav">
-        <a href="/about"    class="site-footer-link" data-i18n="footer.about">About Us</a>
-        <a href="/contacts" class="site-footer-link" data-i18n="footer.contacts">Contacts</a>
-        <a href="/privacy"  class="site-footer-link" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="/about"    class="site-footer-link" data-i18n="footer.about">Про нас</a>
+        <a href="/contacts" class="site-footer-link" data-i18n="footer.contacts">Контакти</a>
+        <a href="/privacy"  class="site-footer-link" data-i18n="footer.privacy">Конфіденційність</a>
       </nav>
     </div>
   </footer>
 
   <!-- Google AdSense Banner -->
-  <div class="ad-bar" id="ad-bar">
-    <div class="ad-bar-inner">
-      <span class="ad-label" data-i18n="footer.ad">Advertising</span>
-      <div class="ad-slot-wrap">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-1778963811750250"
-             data-ad-slot="1905379734"
-             data-ad-format="auto"
-             data-full-width-responsive="true">
-        </ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
+  <!-- Outer wrapper: AdSense overrides height on .ad-bar itself,        -->
+  <!-- so we clip with an OUTER div that AdSense script never touches.   -->
+  <div class="ad-bar-outer">
+    <div class="ad-bar" id="ad-bar">
+      <span class="ad-label" data-i18n="footer.ad">Ad</span>
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:728px;height:90px"
+           data-ad-client="ca-pub-1778963811750250"
+           data-ad-slot="1905379734">
+      </ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
   </div>
 </main>

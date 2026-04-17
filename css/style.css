@@ -422,28 +422,31 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
 .pal-hex{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.5px}
 
 /* ── GOOGLE ADSENSE BANNER ─────────────────────────────────────────────────── */
-.ad-bar{
+/*
+ * ПРОБЛЕМА: AdSense JS додає style="height:auto !important; max-height:none !important"
+ * прямо на .ad-bar і на <ins> — CSS override не працює.
+ *
+ * РІШЕННЯ: .ad-bar-outer — зовнішня обгортка з overflow:hidden і фіксованою висотою.
+ * AdSense-скрипт ніколи не чіпає елементи що він сам не створював.
+ * .ad-bar може рости скільки завгодно — .ad-bar-outer його обрізає.
+ */
+.ad-bar-outer{
   flex-shrink:0;
-  border-top:1px solid var(--border);
-  background:var(--s1);
-  height:100px;
-  max-height:100px;
-  overflow:hidden;
+  height:100px;          /* Фіксована висота — AdSense не чіпає цей елемент */
+  overflow:hidden;       /* Обрізає все що виходить за межі */
   position:sticky;
   bottom:0;
   z-index:10;
-  display:flex;
-  align-items:center;
+  background:var(--s1);
+  border-top:1px solid var(--border);
 }
-.ad-bar-inner{
+.ad-bar{
   display:flex;
   align-items:center;
   justify-content:center;
   gap:8px;
-  width:100%;
-  height:90px;
-  overflow:hidden;
-  padding:0 16px;
+  padding:5px 16px;
+  min-height:100px;
 }
 .ad-label{
   font-family:var(--mono);
@@ -454,28 +457,16 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
   flex-shrink:0;
   white-space:nowrap;
 }
-.ad-slot-wrap{
-  flex:1;
-  max-width:728px;
-  height:90px;
-  max-height:90px;
-  min-width:0;
-  overflow:hidden;
-}
-.ad-slot-wrap ins.adsbygoogle{
-  display:block !important;
-  width:100% !important;
-  height:90px !important;
-  max-height:90px !important;
-}
 @media(max-width:768px){
-  .ad-bar{height:60px;max-height:60px;position:static}
-  .ad-bar-inner{height:50px;padding:0 8px}
+  .ad-bar-outer{height:60px;position:static}
+  .ad-bar{min-height:60px;padding:4px 8px}
   .ad-label{display:none}
-  .ad-slot-wrap{max-width:100%;height:50px;max-height:50px}
-  .ad-slot-wrap ins.adsbygoogle{height:50px !important;max-height:50px !important}
+  .ad-bar .adsbygoogle{
+    width:320px !important;
+    height:50px !important;
+    max-width:calc(100vw - 20px) !important;
+  }
 }
-
 /* ── SITE FOOTER ───────────────────────────────────────────────────────────── */
 .site-footer{
   flex-shrink:0;
@@ -514,17 +505,56 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
   .site-footer-nav{gap:12px}
 }
 
-/* ── WHOIS ─────────────────────────────────────────────────────────────────── */
-.whois-badge{display:inline-flex;align-items:center;padding:4px 12px;border-radius:20px;font-family:var(--mono);font-size:11px;font-weight:600}
-.whois-badge-reg  {background:rgba(24,224,112,.12);border:1px solid rgba(24,224,112,.3);color:var(--green)}
-.whois-badge-avail{background:rgba(74,158,255,.12);border:1px solid rgba(74,158,255,.3);color:var(--blue)}
-.whois-badge-err  {background:var(--red-dim);border:1px solid rgba(224,85,85,.3);color:#f08080}
-.whois-badge-warn {background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);color:var(--amber)}
-.whois-grid{display:flex;flex-direction:column;gap:0}
-.whois-row{display:flex;align-items:flex-start;gap:16px;padding:9px 0;border-bottom:1px solid var(--border)}
+/* ── WHOIS TOOL ────────────────────────────────────────────────────────────── */
+/* Tabs */
+.wi-tabs{
+  display:flex;
+  gap:4px;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+}
+.wi-tab{
+  padding:8px 16px;
+  border-radius:7px;
+  border:1px solid var(--border);
+  background:var(--s1);
+  color:var(--muted2);
+  font-family:var(--mono);
+  font-size:12px;
+  cursor:pointer;
+  transition:all .12s;
+  white-space:nowrap;
+}
+.wi-tab:hover{border-color:var(--border2);color:var(--text)}
+.wi-tab.active{background:var(--accent-dim);border-color:var(--accent);color:var(--accent);font-weight:600}
+/* Skeleton loader */
+.wi-loading{padding:8px 0}
+.wi-skel{
+  height:12px;width:100%;background:var(--s3);border-radius:4px;
+  margin-bottom:8px;animation:wi-pulse 1.4s ease infinite;
+}
+@keyframes wi-pulse{0%,100%{opacity:.4}50%{opacity:.9}}
+/* WHOIS data grid */
+.whois-grid{display:flex;flex-direction:column}
+.whois-row{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:9px 0;border-bottom:1px solid var(--border);
+}
 .whois-row:last-child{border-bottom:none}
-.whois-k{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);width:130px;flex-shrink:0;padding-top:2px}
-.whois-v{font-family:var(--mono);font-size:12px;color:var(--text2);word-break:break-all;flex:1;line-height:1.7}
+.whois-k{
+  font-family:var(--mono);font-size:10px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--muted);
+  width:140px;flex-shrink:0;padding-top:2px;
+}
+.whois-v{
+  font-family:var(--mono);font-size:12px;color:var(--text2);
+  word-break:break-all;flex:1;line-height:1.7;
+}
+/* Mobile */
+@media(max-width:768px){
+  .wi-tab{padding:6px 10px;font-size:11px}
+  .whois-k{width:90px;font-size:9px}
+}
 
 /* ── ASCII CONVERTER ───────────────────────────────────────────────────────── */
 .asc-radio{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:12px;color:var(--text);cursor:pointer;user-select:none}
