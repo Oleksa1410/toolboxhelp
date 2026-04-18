@@ -322,6 +322,27 @@ export const TOOLS = [
              'Кирилиця кодується у 2 байти.',
     },
   },
+  {
+    id:      'favicon',
+    lucide:  'image',
+    icon:    '⭐',
+    name:    'Favicon Generator',
+    desc:    'Generate favicons from any image',
+    file:    'favicon',
+    export:  'renderFavicon',
+    order:   16,
+    group:   'generate',
+    enabled: true,
+    tip: {
+      title: 'What sizes does a favicon need?',
+      text:  '<b>16×16</b> — classic browser tab.<br>' +
+             '<b>32×32</b> — retina browser tab, taskbar.<br>' +
+             '<b>180×180</b> — Apple Touch Icon (iOS home screen).<br>' +
+             '<b>192×192</b> and <b>512×512</b> — Android Chrome / PWA.<br>' +
+             '<b>favicon.ico</b> — multi-size ICO containing 16, 32, 48px. ' +
+             'Place it in the root of your site for maximum compatibility.',
+    },
+  },
 
   {
     id:      'admin',

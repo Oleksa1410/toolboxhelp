@@ -3,7 +3,7 @@
 Blazing-fast offline-first utilities for web developers.
 No downloads, no sign-ups — just code.
 
-**Version:** 2.7.0 · **Site:** [toolboxhelp.com](https://toolboxhelp.com)  
+**Version:** 2.8.0 · **Site:** [toolboxhelp.com](https://toolboxhelp.com)  
 **Languages:** 🇺🇦 Ukrainian · 🇬🇧 English
 
 ---
@@ -38,6 +38,7 @@ No downloads, no sign-ups — just code.
 |----|------|-------------|
 | `password` | Password Gen | Secure password generator |
 | `qrbar` | QR / Barcode | QR codes and barcodes, PNG/SVG |
+| `favicon` | Favicon Generator | Generate favicons from any image |
 
 ### Validators
 | ID | Name | Description |
