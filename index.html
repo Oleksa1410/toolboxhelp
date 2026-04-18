@@ -1,34 +1,62 @@
 ﻿<!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ToolboxHelp.com — Інструменти для веброзробників</title>
-<meta name="description" content="ToolboxHelp — безкоштовний набір офлайн-утиліт для веброзробників. CSS конвертер, генератор паролів, QR-коди, JSON validator, Base64, Diff checker та ще 13+ інструментів. Без реєстрації.">
-<meta name="keywords" content="css units converter, color converter, password generator, qr code, json validator, base64 encoder, hash generator, diff checker, url encoder, markdown editor, whois lookup, ascii converter, developer tools, веброзробник">
+
+<!-- Primary SEO -->
+<title>ToolboxHelp — Free Online Developer Tools</title>
+<meta name="description" content="Free online tools for web developers: CSS units converter, color picker, password generator, QR code generator, JSON validator, Base64 encoder, hash generator, diff checker, WHOIS lookup, favicon converter and more. No sign-up required.">
+<meta name="keywords" content="developer tools, css units converter, color converter, password generator, qr code generator, json validator, base64 encoder, hash generator, diff checker, url encoder, markdown editor, whois lookup, ascii converter, favicon generator, free online tools">
 <meta name="author" content="ToolboxHelp.com">
-<!-- Open Graph -->
-<meta property="og:title" content="ToolboxHelp.com — Developer Tools">
-<meta property="og:description" content="Blazing-fast offline-first utilities for web developers. No downloads, no sign-ups.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://toolboxhelp.com">
-<meta property="og:locale" content="uk_UA">
-<meta property="og:locale:alternate" content="en_US">
-<!-- SEO: multilingual alternate links -->
-<link rel="alternate" hreflang="uk" href="https://toolboxhelp.com/">
-<link rel="alternate" hreflang="en" href="https://toolboxhelp.com/?lang=en">
-<link rel="alternate" hreflang="x-default" href="https://toolboxhelp.com/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="theme-color" content="#0d1117">
+
 <!-- Canonical -->
 <link rel="canonical" href="https://toolboxhelp.com/">
+
+<!-- Open Graph -->
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="https://toolboxhelp.com/">
+<meta property="og:title"       content="ToolboxHelp — Free Online Developer Tools">
+<meta property="og:description" content="Blazing-fast offline-first utilities for web developers. CSS, JSON, Base64, passwords, QR codes and more. No downloads, no sign-ups.">
+<meta property="og:site_name"   content="ToolboxHelp.com">
+<meta property="og:locale"      content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary">
+<meta name="twitter:title"       content="ToolboxHelp — Free Online Developer Tools">
+<meta name="twitter:description" content="Blazing-fast offline-first utilities for web developers. No downloads, no sign-ups.">
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ToolboxHelp",
+  "url": "https://toolboxhelp.com",
+  "description": "Free online developer tools: CSS converter, JSON validator, Base64 encoder, password generator, QR code generator, WHOIS lookup and more.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "featureList": "CSS Units Converter, Color Converter, Password Generator, QR Code Generator, JSON Validator, Base64 Encoder, Hash Generator, Diff Checker, URL Encoder, Markdown Editor, WHOIS Lookup, ASCII Converter, Favicon Converter"
+}
+</script>
+
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="css/style.css">
 <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
 <!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1778963811750250" crossorigin="anonymous"></script>
+
 <!-- Version loader -->
 <script>
   fetch('/VERSION').then(r => r.ok ? r.text() : Promise.reject())
@@ -41,16 +69,13 @@
 
 <aside class="sidebar" id="sidebar">
   <div class="logo">
-    <div class="logo-eyebrow"><span class="logo-dot"></span><span data-i18n="ui.online">ONLINE</span></div>
+    <div class="logo-eyebrow"><span class="logo-dot"></span>ONLINE</div>
     <div class="logo-name">ToolboxHelp</div>
     <div class="logo-ver" id="app-version">v—</div>
   </div>
   <nav class="nav" id="nav"></nav>
   <div class="sidebar-footer">
-    <div class="sf-r">
-      <span data-i18n="ui.active_tools">active tools</span>
-      <span id="sf-count">0</span>
-    </div>
+    <div class="sf-r"><span>active tools</span><span id="sf-count">0</span></div>
   </div>
 </aside>
 <div class="mob-overlay" id="mob-overlay"></div>
@@ -60,15 +85,10 @@
     <button class="burger" id="burger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
-    <div class="tb-path"><span class="tb-acc">$</span> <span data-i18n="ui.path_prefix">~/toolbox/</span><b id="tb-path">home</b></div>
+    <div class="tb-path"><span class="tb-acc">$</span> ~/toolbox/<b id="tb-path">home</b></div>
     <div class="tb-right">
       <div class="tb-dot"></div>
       <span id="tb-clock">--:--:--</span>
-      <!-- Language switcher -->
-      <div class="lang-switch" id="lang-switch">
-        <button class="lang-btn active" data-lang="uk">UK</button>
-        <button class="lang-btn" data-lang="en">EN</button>
-      </div>
     </div>
   </div>
   <div class="content" id="content"></div>
@@ -76,23 +96,19 @@
   <!-- Site Footer -->
   <footer class="site-footer">
     <div class="site-footer-inner">
-      <span class="site-footer-copy">©
-        <span id="footer-year"></span> ToolboxHelp.com
-      </span>
+      <span class="site-footer-copy">© <span id="footer-year"></span> ToolboxHelp.com</span>
       <nav class="site-footer-nav">
-        <a href="/about"    class="site-footer-link" data-i18n="footer.about">Про нас</a>
-        <a href="/contacts" class="site-footer-link" data-i18n="footer.contacts">Контакти</a>
-        <a href="/privacy"  class="site-footer-link" data-i18n="footer.privacy">Конфіденційність</a>
+        <a href="/about"    class="site-footer-link">About</a>
+        <a href="/contacts" class="site-footer-link">Contact</a>
+        <a href="/privacy"  class="site-footer-link">Privacy</a>
       </nav>
     </div>
   </footer>
 
   <!-- Google AdSense Banner -->
-  <!-- Outer wrapper: AdSense overrides height on .ad-bar itself,        -->
-  <!-- so we clip with an OUTER div that AdSense script never touches.   -->
   <div class="ad-bar-outer">
     <div class="ad-bar" id="ad-bar">
-      <span class="ad-label" data-i18n="footer.ad">Ad</span>
+      <span class="ad-label">Ad</span>
       <ins class="adsbygoogle"
            style="display:inline-block;width:728px;height:90px"
            data-ad-client="ca-pub-1778963811750250"
@@ -108,7 +124,7 @@
 <script>
   (function(){
     const F = 2026, n = new Date().getFullYear();
-    document.getElementById('footer-year').textContent = n === F ? F : F + '–' + n;
+    document.getElementById('footer-year').textContent = n === F ? F : F + '\u2013' + n;
   })();
 </script>
 <script type="module" src="js/main.js"></script>

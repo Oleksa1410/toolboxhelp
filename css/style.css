@@ -560,37 +560,6 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
 .asc-radio{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:12px;color:var(--text);cursor:pointer;user-select:none}
 .asc-radio input{accent-color:var(--accent);cursor:pointer}
 
-/* ── LANGUAGE SWITCHER ─────────────────────────────────────────────────────── */
-.lang-switch{
-  display:flex;
-  align-items:center;
-  gap:2px;
-  margin-left:10px;
-  background:var(--s2);
-  border:1px solid var(--border);
-  border-radius:5px;
-  padding:2px;
-}
-.lang-btn{
-  font-family:var(--mono);
-  font-size:10px;
-  font-weight:600;
-  letter-spacing:.5px;
-  padding:3px 7px;
-  border:none;
-  border-radius:3px;
-  cursor:pointer;
-  background:transparent;
-  color:var(--muted);
-  transition:all .12s;
-}
-.lang-btn:hover{color:var(--text)}
-.lang-btn.active{background:var(--accent);color:#0d1117}
-@media(max-width:768px){
-  .lang-switch{margin-left:6px}
-  .lang-btn{padding:2px 5px;font-size:9px}
-}
-
 /* ── FAVICON GENERATOR ─────────────────────────────────────────────────────── */
 .fav-drop{
   border:2px dashed var(--border2);border-radius:10px;

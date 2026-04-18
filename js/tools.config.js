@@ -326,7 +326,7 @@ export const TOOLS = [
     id:      'favicon',
     lucide:  'image',
     icon:    '⭐',
-    name:    'Favicon Generator',
+    name:    'Favicon Converter',
     desc:    'Generate favicons from any image',
     file:    'favicon',
     export:  'renderFavicon',

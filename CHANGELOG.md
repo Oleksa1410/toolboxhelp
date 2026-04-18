@@ -10,6 +10,23 @@
 
 ---
 
+## [2.8.1] — 2025-05-16
+
+### Змінено
+- **Favicon Generator** → **Favicon Converter** (перейменовано в меню та конфігу)
+- **Сайт повністю англомовний** — прибрано i18n switcher, `data-i18n` атрибути, `getLang/setLang` з `main.js`. `home.js` — статичний EN текст
+- **`index.html`** — SEO оптимізація для Google AdSense монетизації:
+  - `<html lang="en">`, title і description англійською
+  - `<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">`
+  - JSON-LD `WebApplication` structured data з назвою, описом, категорією, featureList
+  - Twitter Card мета-теги
+  - `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>` — прискорення шрифтів
+  - `og:locale` = `en_US`, прибрано hreflang alternate (сайт однієї мови)
+  - Прибрано lang switcher кнопки з topbar
+- Прибрано CSS `.lang-switch` блок зі `style.css`
+
+---
+
 ## [2.8.0] — 2025-05-16
 
 ### Додано
