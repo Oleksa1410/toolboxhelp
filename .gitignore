@@ -1,7 +1,26 @@
-﻿js/admin.config.js
-toolboxhelp.zip
-toolbox.zip
-autogit.bat
+# Залежності
 node_modules/
-package-lock.json
+vendor/
+
+# Конфігурації та секрети
+.env
+.env.local
+.env.*.local
+
+# Скрипти автоматизації
+autogit.bat
+git-link.bat
+setup.bat
+start.bat
+
+# Системні файли
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Логи та тимчасові файли
+*.log
 npm-debug.log*
+.eslintcache
+.vercel
