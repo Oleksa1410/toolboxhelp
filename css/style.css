@@ -618,3 +618,25 @@ input[type=checkbox]{accent-color:var(--accent);width:13px;height:13px;cursor:po
   .fav-grid{grid-template-columns:repeat(2,1fr)}
   .fav-drop{padding:24px 16px}
 }
+
+/* ── BASE64 IMAGE ENCODER ──────────────────────────────────────────────────── */
+.b64i-drop{
+  border:2px dashed var(--border2);border-radius:10px;
+  padding:32px 20px;text-align:center;cursor:pointer;
+  transition:all .15s;background:var(--bg);
+}
+.b64i-drop:hover,.b64i-drop--over{border-color:var(--accent);background:var(--accent-dim)}
+.b64i-browse{color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.b64i-fmt-btn.active{background:var(--accent-dim);border-color:var(--accent);color:var(--accent)}
+
+/* ── CLIPBOARD FORMATTER ───────────────────────────────────────────────────── */
+.clf-group{
+  margin-bottom:14px;padding-bottom:14px;
+  border-bottom:1px solid var(--border);
+}
+.clf-group:last-of-type{border-bottom:none;margin-bottom:0}
+.clf-group-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:1.8px;
+  text-transform:uppercase;color:var(--muted);margin-bottom:8px;
+}
+.clf-btns{display:flex;flex-wrap:wrap;gap:6px}

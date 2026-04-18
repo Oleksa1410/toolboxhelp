@@ -343,6 +343,43 @@ export const TOOLS = [
              'Place it in the root of your site for maximum compatibility.',
     },
   },
+  {
+    id:      'base64img',
+    lucide:  'file-image',
+    icon:    '🖼',
+    name:    'Base64 Image',
+    desc:    'Image ↔ Base64 / Data URL encoder',
+    file:    'base64img',
+    export:  'renderBase64Img',
+    order:   17,
+    group:   'encode',
+    enabled: true,
+    tip: {
+      title: 'Base64 images — when to use?',
+      text:  'Base64 embeds an image directly in HTML/CSS as a text string. No separate HTTP request.<br>' +
+             '<b>Best for:</b> small icons &lt;5KB, email templates, single-file HTML, CSS backgrounds.<br>' +
+             '<b>Avoid for:</b> large images — Base64 adds ~33% to file size and cannot be cached separately.',
+    },
+  },
+  {
+    id:      'clipformat',
+    lucide:  'clipboard-pen',
+    icon:    '📋',
+    name:    'Clipboard Formatter',
+    desc:    'Transform, format and clean text',
+    file:    'clipformat',
+    export:  'renderClipFormat',
+    order:   18,
+    group:   'text',
+    enabled: true,
+    tip: {
+      title: 'Quick tips',
+      text:  '<b>Click</b> a button → result appears in Output (non-destructive preview).<br>' +
+             '<b>Double-click</b> → applies result back to Input (chain transforms).<br>' +
+             '<b>Swap ⇅</b> → moves Output back to Input for further transforms.<br>' +
+             '<b>Undo/Redo</b> → full history of input changes.',
+    },
+  },
 
   {
     id:      'admin',

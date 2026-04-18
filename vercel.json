@@ -55,7 +55,9 @@
     { "source": "/markdown",  "destination": "/index.html" },
     { "source": "/whois",     "destination": "/index.html" },
     { "source": "/ascii",     "destination": "/index.html" },
-    { "source": "/favicon",   "destination": "/index.html" },
-    { "source": "/admin",     "destination": "/index.html" }
+    { "source": "/favicon",    "destination": "/index.html" },
+    { "source": "/base64img",  "destination": "/index.html" },
+    { "source": "/clipformat", "destination": "/index.html" },
+    { "source": "/admin",      "destination": "/index.html" }
   ]
 }

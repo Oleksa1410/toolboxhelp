@@ -10,6 +10,25 @@
 
 ---
 
+## [2.9.0] — 2025-05-17
+
+### Added
+- **Base64 Image Encoder** (`/base64img`) — three tabs:
+  - **Image → Base64**: drag & drop or URL fetch; output as Data URL, raw Base64, HTML `<img>`, CSS `url()`, Markdown; file size comparison (+33% overhead shown)
+  - **Base64 → Image**: decode any Data URL or raw Base64 string; auto-detect MIME; download decoded image
+  - **CSS Usage**: live code examples (HTML img, CSS background-image, CSS content pseudo-element) with copy buttons; When to use / avoid guide
+- **Clipboard Formatter** (`/clipformat`) — 50+ text transformations in groups:
+  - **Case**: UPPER, lower, Title, Sentence, camelCase, PascalCase, snake_case, kebab-case, SCREAMING_SNAKE, dot.case, path/case, CONSTANT_CASE
+  - **Whitespace**: trim, collapse spaces, remove spaces, trim lines, remove blank lines, single line, normalize
+  - **Lines**: sort A→Z / Z→A / by length, reverse, unique, shuffle, number lines
+  - **Add/Remove**: prefix, suffix, remove punctuation/numbers/HTML/emoji/URLs, extract URLs/emails/numbers
+  - **Find & Replace**: regex support, case-sensitive toggle
+  - **Encode/Decode**: HTML entities, URL encode/decode, Base64 encode/decode, JSON escape/unescape, regex escape
+  - **Format**: CSV→JSON, Lines→JSON/CSV/SQL, slugify, wrap in quotes/backticks, comma/pipe join
+  - Click = preview in Output; Double-click = apply to Input (chain); Swap ⇅; Undo/Redo history
+
+---
+
 ## [2.8.1] — 2025-05-16
 
 ### Змінено
