@@ -31,7 +31,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 .logo{padding:18px 16px 14px;border-bottom:1px solid var(--border)}
 .logo-eyebrow{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:7px;display:flex;align-items:center;gap:6px}
 .logo-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
-.logo-name{font-size:16px;font-weight:600;color:var(--text2);letter-spacing:-0.3px}
+.logo-name{font-size:16px;font-weight:600;color:var(--text2);letter-spacing:-0.3px;background:none;border:none;padding:0;cursor:pointer;text-align:left;transition:color .12s;display:block;width:100%}
+.logo-name:hover{color:var(--accent)}
 .logo-ver{font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:3px}
 .nav{flex:1;overflow-y:auto;padding:8px}
 .nav-group{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:10px 8px 5px}
@@ -731,3 +732,16 @@ mark.dv-char-ins{background:rgba(24,224,112,.3);color:inherit;border-radius:2px;
   display:inline-block;white-space:nowrap;
 }
 .rx-ref-code:hover{border-color:var(--accent);background:var(--accent-dim)}
+
+/* ── STRING CONVERTER ──────────────────────────────────────────────────────── */
+.sc-section{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.sc-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.sc-section-title{font-family:var(--mono);font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.sc-btns{display:flex;flex-wrap:wrap;gap:6px}
+
+/* ── UUID GENERATOR ────────────────────────────────────────────────────────── */
+.uuid-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s}
+.uuid-row:hover{background:var(--s2)}
+.uuid-row:last-child{border-bottom:none}
+.uuid-num{font-family:var(--mono);font-size:10px;color:var(--muted);min-width:24px;text-align:right;flex-shrink:0}
+.uuid-val{font-family:var(--mono);font-size:13px;color:var(--text2);flex:1;word-break:break-all}

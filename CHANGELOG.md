@@ -10,6 +10,29 @@
 
 ---
 
+## [2.12.0] — 2025-05-20
+
+### Changed
+- **Sidebar logo "ToolboxHelp"** — now a clickable button that navigates to home and closes mobile menu
+- **Nav menu** — "Home" item removed; home is now accessible only via the logo
+
+### Added
+- **String Converter** (`/stringconv`) — 40+ string operations in 4 groups:
+  - **Case**: UPPER, lower, Title, Sentence, tOGGLE, camelCase, PascalCase, snake_case, kebab-case, SCREAMING_SNAKE, dot.case, path/case, CONSTANT_CASE
+  - **Encode/Decode**: Base64, URL, HTML entities, Hex, Binary, ROT13, Morse code (encode & decode)
+  - **Format & Clean**: trim, collapse spaces, remove spaces, reverse string, reverse words, slugify, truncate, pad left/right, repeat
+  - **Inspect**: char count, word count, UTF-8 byte size, char list, char frequency, palindrome check, pangram check
+  - Apply ↩ button to chain operations
+- **UUID Generator** (`/uuid`) — full UUID toolkit:
+  - Generate v4 (random), v1 (timestamp), v7 (sortable timestamp+random), Nil, Max UUID
+  - Output formats: standard, UPPERCASE, no dashes, {braces}, URN
+  - Bulk generate up to 1000 UUIDs; copy all; download as .txt
+  - **Inspector** — paste any UUID to see version, variant, formatted variants, decoded timestamp (v1/v7)
+  - **Bulk validate / convert** — paste list of UUIDs, validate each, or convert format
+  - Click any row to copy
+
+---
+
 ## [2.11.0] — 2025-05-19
 
 ### Added

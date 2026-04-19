@@ -458,6 +458,44 @@ export const TOOLS = [
              '<b>Cheat Sheet</b> — click any pattern to insert it into the regex field.',
     },
   },
+  {
+    id:      'stringconv',
+    lucide:  'letter-text',
+    icon:    'Aa',
+    name:    'String Converter',
+    desc:    'Case, encode, format, inspect strings',
+    file:    'stringconv',
+    export:  'renderStringConv',
+    order:   23,
+    group:   'text',
+    enabled: true,
+    tip: {
+      title: 'String Converter tips',
+      text:  '<b>Apply ↩</b> — moves output back to input for chaining operations.<br>' +
+             '<b>Case conversions</b>: camelCase, PascalCase, snake_case, kebab-case, SCREAMING, dot, path.<br>' +
+             '<b>Encodings</b>: Base64, URL, HTML entities, Hex, Binary, ROT13, Morse code.<br>' +
+             '<b>Inspect</b>: byte size, char frequency, palindrome and pangram checks.',
+    },
+  },
+  {
+    id:      'uuid',
+    lucide:  'fingerprint',
+    icon:    '⊞',
+    name:    'UUID Generator',
+    desc:    'Generate and inspect UUIDs v1/v4/v7',
+    file:    'uuid',
+    export:  'renderUuid',
+    order:   24,
+    group:   'generate',
+    enabled: true,
+    tip: {
+      title: 'Which UUID version to use?',
+      text:  '<b>v4</b> — fully random. Best for most use cases.<br>' +
+             '<b>v7</b> — Unix timestamp + random. Sortable in databases (recommended for PKs).<br>' +
+             '<b>v1</b> — timestamp + MAC. Sortable but leaks MAC address — avoid in public APIs.<br>' +
+             '<b>Nil</b> / <b>Max</b> — special sentinel values (all zeros / all ones).',
+    },
+  },
 
   {
     id:      'admin',

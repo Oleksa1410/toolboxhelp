@@ -62,6 +62,8 @@
     { "source": "/jwt",         "destination": "/index.html" },
     { "source": "/linesort",    "destination": "/index.html" },
     { "source": "/regexcheck",  "destination": "/index.html" },
+    { "source": "/stringconv",  "destination": "/index.html" },
+    { "source": "/uuid",        "destination": "/index.html" },
     { "source": "/admin",       "destination": "/index.html" }
   ]
 }

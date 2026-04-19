@@ -186,9 +186,9 @@ function buildNav() {
     nav.appendChild(el);
   };
 
-  // Home (no group label)
-  const homeT = tools.find(t => t.id === 'home' && t.enabled);
-  if (homeT) item(homeT);
+  // Home shown in logo only — not in nav
+  // const homeT = tools.find(t => t.id === 'home' && t.enabled);
+  // if (homeT) item(homeT);
 
   // Grouped tools
   Object.entries(GROUP_LABELS).forEach(([groupId, groupLabel]) => {
@@ -209,7 +209,12 @@ function buildNav() {
   if (window.lucide) window.lucide.createIcons();
 }
 
-// ── Burger menu ───────────────────────────────────────────────────────────────
+// ── Logo → Home ───────────────────────────────────────────────────────────────
+
+document.getElementById('logo-home-btn')?.addEventListener('click', () => {
+  closeMenu();
+  navigate('home');
+});
 
 const burger  = document.getElementById('burger');
 const sidebar = document.getElementById('sidebar');
