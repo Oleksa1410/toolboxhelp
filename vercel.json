@@ -57,7 +57,11 @@
     { "source": "/ascii",     "destination": "/index.html" },
     { "source": "/favicon",    "destination": "/index.html" },
     { "source": "/base64img",  "destination": "/index.html" },
-    { "source": "/clipformat", "destination": "/index.html" },
-    { "source": "/admin",      "destination": "/index.html" }
+    { "source": "/clipformat",  "destination": "/index.html" },
+    { "source": "/diffviewer",  "destination": "/index.html" },
+    { "source": "/jwt",         "destination": "/index.html" },
+    { "source": "/linesort",    "destination": "/index.html" },
+    { "source": "/regexcheck",  "destination": "/index.html" },
+    { "source": "/admin",       "destination": "/index.html" }
   ]
 }

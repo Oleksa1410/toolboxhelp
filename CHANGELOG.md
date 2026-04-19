@@ -10,6 +10,57 @@
 
 ---
 
+## [2.11.0] — 2025-05-19
+
+### Added
+- **Line Sort & Dedupe** (`/linesort`) — comprehensive line processing:
+  - **Sort**: A→Z, Z→A, by length, natural sort, numeric, random shuffle, reverse
+  - Options: case-insensitive, trim before compare, sort by trailing number
+  - **Deduplicate**: remove duplicates, case-insensitive dedupe, keep duplicates only, count occurrences
+  - **Filter**: remove blank / whitespace-only lines, keep/remove by pattern or regex, filter by min/max length
+  - **Transform**: trim, uppercase/lowercase, number lines, strip line numbers, add prefix/suffix
+  - **Set operations** (Input A vs Input B): intersect (A∩B), union (A∪B), A−B, B−A, symmetric difference (A△B)
+  - **Analyze**: stats summary (total, unique, blank, avg/min/max length), frequency table sorted by count
+  - Apply ↩ button — pipes output back to input for chaining operations
+- **Regex Checker** (`/regexcheck`) — real-time regex tester:
+  - Live highlighting — each match gets a distinct color inline in the test textarea (transparent overlay technique)
+  - **Matches tab** — table with match text, index range, length; copy individual match
+  - **Groups tab** — capture groups per match, named groups support
+  - **Replace tab** — test replacement strings with $1/$2/$&/etc; copy result
+  - **Split tab** — split test string by regex, show resulting array with indices
+  - **Cheat Sheet tab** — full reference (anchors, char classes, quantifiers, groups, lookaround, flags); click any pattern to insert into field
+  - Flag toggle buttons (g, i, m, s, u, d) with visual active state
+  - Inline error display for invalid patterns
+
+---
+
+## [2.10.0] — 2025-05-18
+
+### Added
+- **Diff Viewer** (`/diffviewer`) — advanced side-by-side diff:
+  - Myers diff algorithm (O(ND) complexity, handles large files)
+  - **Split view** — two-column with line numbers, +/− signs, del/ins/changed row highlighting
+  - **Unified view** — git-style single column with original and modified line numbers
+  - **Character-level highlighting** — orange marks show exact changed chars within a line pair
+  - Stats: lines added / removed / unchanged / similarity %
+  - Options: ignore whitespace, ignore case
+  - Copy as **unified patch** (standard `.patch` format) or plain diff text
+  - Ctrl+Enter to run · Paste buttons for both panels
+- **JWT Viewer** (`/jwt`) — full JWT decoder and inspector:
+  - Decodes Header, Payload, Signature (Base64url)
+  - Syntax-highlighted JSON for each section
+  - **Status banner**: green (valid), amber (expires soon / not yet valid), red (expired)
+  - Time claims decoded: exp, iat, nbf, auth_time with human-readable relative times
+  - Registered claims table: iss, sub, aud, jti, scope with labels
+  - Algorithm info with security notes (HS256/RS256/ES256/none warning)
+  - Colored token display (header=blue · payload=green · signature=red)
+  - Load example token button
+  - Raw Base64url parts expandable section
+  - Live decode on paste (400ms debounce)
+  - ⚠ Signature verification not possible without the secret key (noted in UI)
+
+---
+
 ## [2.9.0] — 2025-05-17
 
 ### Added

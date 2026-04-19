@@ -380,6 +380,84 @@ export const TOOLS = [
              '<b>Undo/Redo</b> → full history of input changes.',
     },
   },
+  {
+    id:      'diffviewer',
+    lucide:  'diff',
+    icon:    '⟷',
+    name:    'Diff Viewer',
+    desc:    'Side-by-side diff with char highlighting',
+    file:    'diffviewer',
+    export:  'renderDiffViewer',
+    order:   19,
+    group:   'text',
+    enabled: true,
+    tip: {
+      title: 'How to read a diff?',
+      text:  '<span style="color:var(--green)">Green (+)</span> — lines added in the modified version.<br>' +
+             '<span style="color:var(--red)">Red (−)</span> — lines removed from the original.<br>' +
+             'Orange highlights show <b>character-level</b> changes within a modified line.<br>' +
+             '<b>Split view</b> — side-by-side comparison. <b>Unified</b> — git-style single column.<br>' +
+             '<b>Ctrl+Enter</b> — run compare.',
+    },
+  },
+  {
+    id:      'jwt',
+    lucide:  'key-square',
+    icon:    '🔑',
+    name:    'JWT Viewer',
+    desc:    'Decode and inspect JWT tokens',
+    file:    'jwt',
+    export:  'renderJwt',
+    order:   20,
+    group:   'encode',
+    enabled: true,
+    tip: {
+      title: 'What is a JWT?',
+      text:  'A <b>JSON Web Token</b> has three parts: ' +
+             '<span style="color:#4a9eff">Header</span> (algorithm &amp; type) · ' +
+             '<span style="color:var(--accent)">Payload</span> (claims/data) · ' +
+             '<span style="color:var(--red)">Signature</span> (verification).<br>' +
+             'Each part is Base64url-encoded and separated by a dot.<br>' +
+             '⚠ This tool decodes only — signature verification requires the secret key.',
+    },
+  },
+  {
+    id:      'linesort',
+    lucide:  'list-ordered',
+    icon:    '≡',
+    name:    'Line Sort & Dedupe',
+    desc:    'Sort, deduplicate and filter lines',
+    file:    'linesort',
+    export:  'renderLineSort',
+    order:   21,
+    group:   'text',
+    enabled: true,
+    tip: {
+      title: 'Line Sort & Dedupe tips',
+      text:  '<b>Apply ↩</b> — moves output back to input for chaining operations.<br>' +
+             '<b>Set operations</b> — paste a second list in Input B to find intersections, unions, or differences.<br>' +
+             '<b>Frequency</b> — shows each unique line with its occurrence count, sorted by frequency.',
+    },
+  },
+  {
+    id:      'regexcheck',
+    lucide:  'regex',
+    icon:    '.*',
+    name:    'Regex Checker',
+    desc:    'Test, debug and visualize regex',
+    file:    'regexcheck',
+    export:  'renderRegexCheck',
+    order:   22,
+    group:   'validate',
+    enabled: true,
+    tip: {
+      title: 'Regex tips',
+      text:  '<b>Highlighted matches</b> — each match gets a different color inline.<br>' +
+             '<b>Groups tab</b> — see capture group values per match.<br>' +
+             '<b>Replace tab</b> — use $1, $2 for groups, $&amp; for full match.<br>' +
+             '<b>Cheat Sheet</b> — click any pattern to insert it into the regex field.',
+    },
+  },
 
   {
     id:      'admin',
